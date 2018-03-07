@@ -1,6 +1,6 @@
 # Polis
 Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
-This script will install **Polis version 1.2.2**.
+This script will install version **1.2.2**.
 ***
 
 ## Installation:
@@ -42,7 +42,7 @@ polis-cli getinfo
 polis-cli masternode status
 polis-cli mnsync status
 ```
-Also, if you want to check/start/stop **Super Lumic** , run one of the following commands as **root**:
+Also, if you want to check/start/stop **Polis** , run one of the following commands as **root**:
 ```
 systemctl status Polis #To check the service is running.
 systemctl start Polis #To start Polis service.
@@ -53,11 +53,11 @@ systemctl is-enabled Polis #To check whetether Polis service is enabled on boot 
 
 ## Sentinel
 
-**Sentinel** is installed in **/root/.poliscore/sentinel/** and added to **crontab** file.  
+**Sentinel** is installed in **/sentinel** and added to **crontab** file.  
 Sentinel log file is **/root/.poliscore/sentinel.log**  
 Test the config by running the following commands:
 ```
-cd /root/.poliscore/sentinel
+cd /sentinel
 ./venv/bin/py.test ./test
 ```
 ***

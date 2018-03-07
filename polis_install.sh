@@ -22,13 +22,14 @@ NC='\033[0m'
 function install_sentinel() {
   echo -e "${GREEN}Install sentinel.${NC}"
   apt-get -y install python-virtualenv virtualenv >/dev/null 2>&1
-  git clone $SENTINEL_REPO $CONFIGFOLDER/sentinel >/dev/null 2>&1
-  cd $CONFIGFOLDER/sentinel
+  git clone $SENTINEL_REPO /sentinel >/dev/null 2>&1
+  cd /sentinel
   virtualenv ./venv >/dev/null 2>&1
   ./venv/bin/pip install -r requirements.txt >/dev/null 2>&1
-  echo  "* * * * * cd $CONFIGFOLDER/sentinel && ./venv/bin/python bin/sentinel.py >> $CONFIGFOLDER/sentinel.log 2>&1" > $CONFIGFOLDER/$COIN_NAME.cron
+  echo  "* * * * * cd /sentinel && ./venv/bin/python bin/sentinel.py >> $CONFIGFOLDER/sentinel.log 2>&1" > $CONFIGFOLDER/$COIN_NAME.cron
   crontab $CONFIGFOLDER/$COIN_NAME.cron
   rm $CONFIGFOLDER/$COIN_NAME.cron >/dev/null 2>&1
+  cd -
 }
 
 
@@ -253,10 +254,10 @@ function important_information() {
  echo -e "VPS_IP:PORT ${RED}$NODEIP:$COIN_PORT${NC}"
  echo -e "MASTERNODE PRIVATEKEY is: ${RED}$COINKEY${NC}"
  if [[ -n $SENTINEL_REPO  ]]; then
-  echo -e "${RED}Sentinel${NC} is installed in ${RED}$CONFIGFOLDER/sentinel${NC}"
+  echo -e "${RED}Sentinel${NC} is installed in ${RED}/sentinel${NC}"
   echo -e "Sentinel logs is: ${RED}$CONFIGFOLDER/sentinel.log${NC}"
  fi
- echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${GREEN}systemctl status $COIN_NAME.service${NC}"
+ echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
 }
 
