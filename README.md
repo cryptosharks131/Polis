@@ -59,6 +59,7 @@ Test the config by running the following commands:
 ```
 cd /sentinel
 ./venv/bin/py.test ./test
+SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py
 ```
 ***
 
