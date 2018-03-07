@@ -131,22 +131,28 @@ clear
 function update_config() {
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 logintimestamps=1
-maxconnections=256
+maxaddnodeions=256
 bind=$NODEIP
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-connect=35.227.49.86:24126
-connect=192.243.103.182:24126
-connect=185.153.231.146:24126
-connect=91.223.147.100:24126
-connect=96.43.143.93:24126
-connect=104.236.147.210:24126
-connect=159.89.137.114:24126
-connect=159.89.139.41:24126
-connect=174.138.70.155:24126
-connect=174.138.70.16:24126
-connect=45.55.247.25:24126
+addnode=polispay.org
+addnode=node1.polispay.org
+addnode=node2.polispay.org
+addnode=insight.polispay.org
+addnode=insight2.polispay.org
+addnode=explorer.polispay.org
+addnode=35.227.49.86:24126
+addnode=192.243.103.182:24126
+addnode=185.153.231.146:24126
+addnode=91.223.147.100:24126
+addnode=96.43.143.93:24126
+addnode=104.236.147.210:24126
+addnode=159.89.137.114:24126
+addnode=159.89.139.41:24126
+addnode=174.138.70.155:24126
+addnode=174.138.70.16:24126
+addnode=45.55.247.25:24126
 EOF
 }
 
@@ -166,7 +172,7 @@ function get_ip() {
   declare -a NODE_IPS
   for ips in $(netstat -i | awk '!/Kernel|Iface|lo/ {print $1," "}')
   do
-    NODE_IPS+=($(curl --interface $ips --connect-timeout 2 -s4 icanhazip.com))
+    NODE_IPS+=($(curl --interface $ips --addnode-timeout 2 -s4 icanhazip.com))
   done
 
   if [ ${#NODE_IPS[@]} -gt 1 ]
