@@ -44,7 +44,7 @@ function compile_node() {
   cp bin/polis* /usr/local/bin
   compile_error
   strip $COIN_DAEMON $COIN_CLI
-  cd -
+  cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
 }
@@ -131,8 +131,8 @@ clear
 function update_config() {
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 logintimestamps=1
-maxaddnodeions=256
-bind=$NODEIP
+maxconnections=256
+#bind=$NODEIP
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
@@ -172,7 +172,7 @@ function get_ip() {
   declare -a NODE_IPS
   for ips in $(netstat -i | awk '!/Kernel|Iface|lo/ {print $1," "}')
   do
-    NODE_IPS+=($(curl --interface $ips --addnode-timeout 2 -s4 icanhazip.com))
+    NODE_IPS+=($(curl --interface $ips --timeout 2 -s4 icanhazip.com))
   done
 
   if [ ${#NODE_IPS[@]} -gt 1 ]
