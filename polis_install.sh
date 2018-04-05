@@ -172,7 +172,7 @@ function get_ip() {
   declare -a NODE_IPS
   for ips in $(netstat -i | awk '!/Kernel|Iface|lo/ {print $1," "}')
   do
-    NODE_IPS+=($(curl --interface $ips --timeout 2 -s4 icanhazip.com))
+    NODE_IPS+=($(curl --interface $ips --connect-timeout 2 -s4 icanhazip.com))
   done
 
   if [ ${#NODE_IPS[@]} -gt 1 ]
