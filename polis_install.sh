@@ -139,7 +139,8 @@ externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
 addnode=polispay.org
 addnode=node1.polispay.org
-addnode=node2.paddnode=46.101.32.72:24126
+addnode=node2.polispay.org
+addnode=46.101.32.72:24126
 addnode=144.202.19.190:24126
 addnode=207.148.5.135:24126
 addnode=89.47.165.165:24126
