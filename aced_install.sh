@@ -37,23 +37,15 @@ function compile_node() {
   echo -e "Prepare to download $COIN_NAME"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
-  echo "1"
   compile_error
-  echo "2"
   COIN_ZIP=$(echo $COIN_REPO | awk -F'/' '{print $NF}')
-  echo "3"
-  tar xvzf $COIN_ZIP --strip 1 >/dev/null 2>&1
-  echo "4"
+  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  echo "5"
   cp aced* /usr/local/bin
-  echo "6"
   compile_error
-  echo "7"
   strip $COIN_DAEMON $COIN_CLI
-  echo "8"
   cd - >/dev/null 2>&1
-  #rm -rf $TMP_FOLDER >/dev/null 2>&1
+  rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
 }
 
