@@ -1,6 +1,6 @@
-# Polis
-Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
-This script will install **Polis 1.3.0**.
+# AceD
+Shell script to install a [AceD Masternode](http://www.acedcoin.com/) on a Linux server running Ubuntu 16.04.  
+This script will install **AceD v1**.
 ***
 
 ## Installation:
