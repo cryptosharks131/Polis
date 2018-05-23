@@ -1,13 +1,13 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='polis.conf'
-CONFIGFOLDER='/root/.poliscore'
-COIN_DAEMON='/usr/local/bin/polisd'
-COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.3.0/poliscore-1.3.0-x86_64-linux-gnu.tar.gz'
-SENTINEL_REPO='https://github.com/polispay/sentinel'
-COIN_NAME='Polis'
+CONFIG_FILE='aced.conf'
+CONFIGFOLDER='/root/.acedcore'
+COIN_DAEMON='/usr/local/bin/acedd'
+COIN_CLI='/usr/local/bin/aced-cli'
+COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/v1.0/aced_linuxbinary_ubuntu16.tar.gz'
+#SENTINEL_REPO='https://github.com/polispay/sentinel'
+COIN_NAME='AceD'
 COIN_PORT=24126
 
 
@@ -270,7 +270,7 @@ function setup_node() {
   create_key
   update_config
   enable_firewall
-  install_sentinel
+  #install_sentinel
   important_information
   configure_systemd
 }
