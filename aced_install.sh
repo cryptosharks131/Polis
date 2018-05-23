@@ -41,7 +41,7 @@ function compile_node() {
   COIN_ZIP=$(echo $COIN_REPO | awk -F'/' '{print $NF}')
   tar xvzf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp bin/aced* /usr/local/bin
+  cp aced* /usr/local/bin
   compile_error
   strip $COIN_DAEMON $COIN_CLI
   cd - >/dev/null 2>&1
