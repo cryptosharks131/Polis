@@ -5,8 +5,8 @@ This script will install **AceD v1**.
 
 ## Installation:
 ```
-wget -q https://raw.githubusercontent.com/zoldur/Polis/master/polis_install.sh
-bash polis_install.sh
+wget -q https://raw.githubusercontent.com/cryptosharks131/AceD/master/aced_install.sh
+bash aced_install.sh
 ```
 ***
 
