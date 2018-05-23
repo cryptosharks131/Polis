@@ -45,9 +45,9 @@ aced-cli mnsync status
 Also, if you want to check/start/stop **AceD** , run one of the following commands as **root**:
 ```
 systemctl status AceD #To check the service is running.
-systemctl start AceD #To start Polis service.
-systemctl stop AceD #To stop Polis service.
-systemctl is-enabled AceD #To check whetether Polis service is enabled on boot or not.
+systemctl start AceD #To start AceD service.
+systemctl stop AceD #To stop AceD service.
+systemctl is-enabled AceD #To check whetether AceD service is enabled on boot or not.
 ```
 ***
 
