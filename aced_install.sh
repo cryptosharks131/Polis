@@ -53,7 +53,7 @@ function compile_node() {
   strip $COIN_DAEMON $COIN_CLI
   echo "8"
   cd - >/dev/null 2>&1
-  rm -rf $TMP_FOLDER >/dev/null 2>&1
+  #rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
 }
 
