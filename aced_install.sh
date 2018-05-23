@@ -46,8 +46,8 @@ function compile_node() {
   strip $COIN_DAEMON $COIN_CLI
   cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
-  sudo chmod +x /usr/local/bin/acedd
-  sudo chmod +x /usr/local/bin/acedd
+  chmod +x /usr/local/bin/acedd
+  chmod +x /usr/local/bin/aced-cli
   clear
 }
 
