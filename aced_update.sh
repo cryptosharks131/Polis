@@ -1,16 +1,11 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='aced.conf'
-CONFIGFOLDER='/root/.acedcore'
 COIN_DAEMON='/usr/local/bin/acedd'
 COIN_CLI='/usr/local/bin/aced-cli'
 COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.4/setup_mnubuntu16.tar.gz'
 SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
-COIN_PORT=24126
-
-NODEIP=$(curl -s4 icanhazip.com)
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
