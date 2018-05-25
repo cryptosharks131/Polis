@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.acedcore'
 COIN_DAEMON='/usr/local/bin/acedd'
 COIN_CLI='/usr/local/bin/aced-cli'
 COIN_REPO='https://github.com/cryptosharks131/AceD/releases/download/v1.0.1/aced_linux_1604.tar.gz'
-#SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
+SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
 COIN_PORT=24126
 
@@ -259,7 +259,7 @@ function setup_node() {
   create_key
   update_config
   enable_firewall
-  #install_sentinel
+  install_sentinel
   important_information
   configure_systemd
 }
