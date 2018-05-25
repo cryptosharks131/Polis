@@ -52,7 +52,7 @@ systemctl is-enabled AceD #To check whetether AceD service is enabled on boot or
 ```
 ***
 
-## Sentinel  (IGNORE: THIS IS NOT YET CONFIGURED)
+## Sentinel
 
 **Sentinel** is installed in **/sentinel** and added to **crontab** file.  
 Sentinel log file is **/root/.acedcore/sentinel.log**  
