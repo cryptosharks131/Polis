@@ -52,6 +52,14 @@ systemctl is-enabled AceD #To check whetether AceD service is enabled on boot or
 ```
 ***
 
+## Updating AceD
+```
+rm aced_update.sh
+wget -q https://raw.githubusercontent.com/cryptosharks131/AceD/master/aced_update.sh
+bash aced_update.sh
+```
+***
+
 ## Sentinel
 
 **Sentinel** is installed in **/sentinel** and added to **crontab** file.  
