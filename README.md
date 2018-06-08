@@ -61,7 +61,7 @@ bash aced_update.sh
 ```
 ***
 
-## Sentinel
+## Sentinel (IGNORE: This is not yet required!)
 
 **Sentinel** is installed in **/sentinel** and added to **crontab** file.  
 Sentinel log file is **/root/.acedcore/sentinel.log**  
