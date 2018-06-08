@@ -4,7 +4,7 @@ TMP_FOLDER=$(mktemp -d)
 COIN_DAEMON='/usr/local/bin/acedd'
 COIN_CLI='/usr/local/bin/aced-cli'
 COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.4/setup_mnubuntu16.tar.gz'
-SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
+#SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
 
 RED='\033[0;31m'
@@ -100,5 +100,5 @@ clear
 checks
 prepare_system
 update_node
-update_sentinel
+#update_sentinel
 important_information
