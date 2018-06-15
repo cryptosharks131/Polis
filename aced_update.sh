@@ -27,7 +27,7 @@ function update_node() {
   wget -q $COIN_BS
   compile_error
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  unzip $COIN_ZIP --strip 1 >/dev/null 2>&1
+  unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
   rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
   cp -r ~/acedCore/blocks ~/.acedcore/blocks
