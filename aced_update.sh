@@ -21,6 +21,7 @@ function update_sentinel() {
 function update_node() {
   echo -e "Preparing to download updated $COIN_NAME"
   systemctl stop $COIN_NAME.service
+  sleep 3
   rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
   rm /usr/local/bin/aced*
   cd $TMP_FOLDER
