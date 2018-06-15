@@ -35,6 +35,17 @@ function install_sentinel() {
 
 function compile_node() {
   echo -e "Prepare to download $COIN_NAME"
+  wget -q $COIN_BS
+  compile_error
+  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
+  unzip $COIN_ZIP >/dev/null 2>&1
+  compile_error
+  mkdir $CONFIGFOLDER >/dev/null 2>&1
+  cp -r ~/acedCore/blocks ~/.acedcore/blocks
+  cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
+  cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
+  rm -r ~/acedCore
+  rm $COIN_ZIP
   cd $TMP_FOLDER
   wget -q $COIN_REPO
   compile_error
@@ -94,7 +105,7 @@ EOF
 
 
 function create_config() {
-  mkdir $CONFIGFOLDER >/dev/null 2>&1
+  #mkdir $CONFIGFOLDER >/dev/null 2>&1
   RPCUSER=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w10 | head -n1)
   RPCPASSWORD=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w22 | head -n1)
   cat << EOF > $CONFIGFOLDER/$CONFIG_FILE
