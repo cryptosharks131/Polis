@@ -6,6 +6,7 @@ COIN_CLI='/usr/local/bin/aced-cli'
 COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.5/ubuntu16mn.tar.gz'
 #SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
+COIN_BS='https://github.com/Acedcoin/AceD/releases/download/1.5/acedCore.zip'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -23,6 +24,17 @@ function update_node() {
   systemctl stop $COIN_NAME.service
   sleep 3
   rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
+  wget -q $COIN_BS
+  compile_error
+  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
+  unzip $COIN_ZIP --strip 1 >/dev/null 2>&1
+  compile_error
+  rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
+  cp -r ~/acedCore/blocks ~/.acedcore/blocks
+  cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
+  cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
+  rm -r ~/acedCore
+  rm $COIN_ZIP
   rm /usr/local/bin/aced*
   cd $TMP_FOLDER
   wget -q $COIN_REPO
