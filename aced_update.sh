@@ -22,24 +22,20 @@ function update_sentinel() {
 function update_node() {
   echo -e "Preparing to download updated $COIN_NAME"
   systemctl stop $COIN_NAME.service
-  sleep 3
   rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
   echo -e "Removed old block files"
-  sleep 3
   wget -q $COIN_BS
   compile_error
   echo -e "Downloaded the bootstrap"
-  sleep 3
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   echo -e $COIN_ZIP
-  sleep 3
   unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
   echo -e "Unzipped the bootstrap"
-  sleep 3
   cp -r ~/acedCore/blocks ~/.acedcore/blocks
   cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
   cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
+  echo -e "Replaced old block folders"
   rm -r ~/acedCore
   rm $COIN_ZIP
   rm /usr/local/bin/aced*
@@ -89,7 +85,7 @@ apt-get update >/dev/null 2>&1
 apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" make software-properties-common \
 build-essential libtool autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
 libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \
-libminiupnpc-dev libgmp3-dev libzmq3-dev ufw pkg-config libevent-dev  libdb5.3++>/dev/null 2>&1
+libminiupnpc-dev unzip libgmp3-dev libzmq3-dev ufw pkg-config libevent-dev  libdb5.3++>/dev/null 2>&1
 if [ "$?" -gt "0" ];
   then
     echo -e "${RED}Not all required packages were installed properly. Try to install them manually by running the following commands:${NC}\n"
