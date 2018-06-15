@@ -36,17 +36,6 @@ function install_sentinel() {
 
 function compile_node() {
   echo -e "Prepare to download $COIN_NAME"
-  wget -q $COIN_BS
-  compile_error
-  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  unzip $COIN_ZIP >/dev/null 2>&1
-  compile_error
-  mkdir $CONFIGFOLDER >/dev/null 2>&1
-  cp -r ~/acedCore/blocks ~/.acedcore/blocks
-  cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
-  cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
-  rm -r ~/acedCore
-  rm $COIN_ZIP
   cd $TMP_FOLDER
   wget -q $COIN_REPO
   compile_error
@@ -106,7 +95,7 @@ EOF
 
 
 function create_config() {
-  #mkdir $CONFIGFOLDER >/dev/null 2>&1
+  mkdir $CONFIGFOLDER >/dev/null 2>&1
   RPCUSER=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w10 | head -n1)
   RPCPASSWORD=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w22 | head -n1)
   cat << EOF > $CONFIGFOLDER/$CONFIG_FILE
@@ -230,7 +219,7 @@ apt-get update >/dev/null 2>&1
 apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" make software-properties-common \
 build-essential libtool autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
 libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \
-libminiupnpc-dev libgmp3-dev unzip libzmq3-dev ufw pkg-config libevent-dev  libdb5.3++>/dev/null 2>&1
+libminiupnpc-dev libgmp3-dev unzip libzmq3-dev ufw pkg-config libevent-dev libdb5.3++>/dev/null 2>&1
 if [ "$?" -gt "0" ];
   then
     echo -e "${RED}Not all required packages were installed properly. Try to install them manually by running the following commands:${NC}\n"
@@ -265,9 +254,23 @@ function important_information() {
  echo -e "================================================================================================================================"
 }
 
+function import_bootstrap() {
+  wget -q $COIN_BS
+  compile_error
+  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
+  unzip $COIN_ZIP >/dev/null 2>&1
+  compile_error
+  cp -r ~/acedCore/blocks ~/.acedcore/blocks
+  cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
+  cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
+  rm -r ~/acedCore
+  rm $COIN_ZIP
+}
+
 function setup_node() {
   get_ip
   create_config
+  import_bootstrap
   create_key
   update_config
   enable_firewall
