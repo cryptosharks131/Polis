@@ -28,7 +28,6 @@ function update_node() {
   compile_error
   echo -e "Downloaded the bootstrap"
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  echo -e $COIN_ZIP
   unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
   echo -e "Unzipped the bootstrap"
