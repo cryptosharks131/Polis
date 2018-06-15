@@ -24,11 +24,17 @@ function update_node() {
   systemctl stop $COIN_NAME.service
   sleep 3
   rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
+  echo -e "Removed old block files"
+  sleep 3
   wget -q $COIN_BS
   compile_error
+  echo -e "Downloaded the bootstrap"
+  sleep 3
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
+  echo -e "Unzipped the bootstrap"
+  sleep 3
   cp -r ~/acedCore/blocks ~/.acedcore/blocks
   cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
   cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
