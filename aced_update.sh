@@ -22,21 +22,7 @@ function update_sentinel() {
 function update_node() {
   echo -e "Preparing to download updated $COIN_NAME"
   systemctl stop $COIN_NAME.service
-  rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
-  echo -e "Removed old block files"
-  wget -q $COIN_BS
-  compile_error
-  echo -e "Downloaded the bootstrap"
-  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  unzip $COIN_ZIP >/dev/null 2>&1
-  compile_error
-  echo -e "Unzipped the bootstrap"
-  mv ~/blocks ~/.acedcore/blocks
-  mv ~/chainstate ~/.acedcore/chainstate
-  mv ~/peers.dat ~/.acedcore/peers.dat
-  echo -e "Replaced old block folders"
-  #rm -r ~/acedCore
-  rm $COIN_ZIP
+  sleep 3
   rm /usr/local/bin/aced*
   cd $TMP_FOLDER
   wget -q $COIN_REPO
@@ -51,7 +37,6 @@ function update_node() {
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   chmod +x /usr/local/bin/acedd
   chmod +x /usr/local/bin/aced-cli
-  systemctl start $COIN_NAME.service
   clear
 }
 
@@ -99,6 +84,21 @@ fi
 clear
 }
 
+function import_bootstrap() {
+  rm -r ~/.acedcore/blocks ~/.acedcore/chainstate ~/.acedcore/peers.dat
+  wget -q $COIN_BS
+  compile_error
+  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
+  unzip $COIN_ZIP >/dev/null 2>&1
+  compile_error
+  cp -r ~/bootstrap/blocks ~/.acedcore/blocks
+  cp -r ~/bootstrap/chainstate ~/.acedcore/chainstate
+  cp -r ~/bootstrap/peers.dat ~/.acedcore/peers.dat
+  rm -r ~/bootstrap/
+  rm $COIN_ZIP
+  echo -e "Sync is complete"
+  systemctl start $COIN_NAME.service
+}
 
 function important_information() {
  echo
@@ -116,5 +116,6 @@ clear
 checks
 prepare_system
 update_node
+import_bootstrap
 #update_sentinel
 important_information
