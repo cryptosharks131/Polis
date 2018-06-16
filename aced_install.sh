@@ -260,10 +260,10 @@ function import_bootstrap() {
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
-  cp -r ~/acedCore/blocks ~/.acedcore/blocks
-  cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
-  cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
-  rm -r ~/acedCore
+  mv ~/blocks ~/.acedcore/blocks
+  mv ~/chainstate ~/.acedcore/chainstate
+  mv ~/peers.dat ~/.acedcore/peers.dat
+  #rm -r ~/acedCore
   rm $COIN_ZIP
 }
 
