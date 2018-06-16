@@ -35,7 +35,7 @@ function update_node() {
   mv ~/chainstate ~/.acedcore/chainstate
   mv ~/peers.dat ~/.acedcore/peers.dat
   echo -e "Replaced old block folders"
-  rm -r ~/acedCore
+  #rm -r ~/acedCore
   rm $COIN_ZIP
   rm /usr/local/bin/aced*
   cd $TMP_FOLDER
