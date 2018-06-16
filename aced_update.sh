@@ -6,7 +6,7 @@ COIN_CLI='/usr/local/bin/aced-cli'
 COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.5/ubuntu16mn.tar.gz'
 #SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
-COIN_BS='https://github.com/cryptosharks131/AceD/releases/download/1.5.1.1/bootstrap.zip'
+COIN_BS='http://149.28.231.161/bootstrap.zip'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
