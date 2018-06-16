@@ -31,9 +31,9 @@ function update_node() {
   unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
   echo -e "Unzipped the bootstrap"
-  cp -r ~/acedCore/blocks ~/.acedcore/blocks
-  cp -r ~/acedCore/chainstate ~/.acedcore/chainstate
-  cp -r ~/acedCore/peers.dat ~/.acedcore/peers.dat
+  mv -r ~/blocks ~/.acedcore/blocks
+  mv -r ~/chainstate ~/.acedcore/chainstate
+  mv -r ~/peers.dat ~/.acedcore/peers.dat
   echo -e "Replaced old block folders"
   rm -r ~/acedCore
   rm $COIN_ZIP
