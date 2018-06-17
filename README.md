@@ -55,7 +55,7 @@ systemctl is-enabled AceD #To check whetether AceD service is enabled on boot or
 ## Updating AceD
 The first line (rm aced_update.sh) is not required the very first time you update the node and will return an error if you run it.  This is fine, continue with the update script.
 ```
-rm aced_update.sh
+rm aced_update.sh*
 wget -q https://raw.githubusercontent.com/cryptosharks131/AceD/master/aced_update.sh
 bash aced_update.sh
 ```
