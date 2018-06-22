@@ -9,7 +9,7 @@ COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.5/ubuntu16mn.tar
 #SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
 COIN_PORT=24126
-#COIN_BS='http://149.28.231.161/bootstrap.zip'
+#COIN_BS='http://bootstrap.zip'
 
 
 NODEIP=$(curl -s4 icanhazip.com)
