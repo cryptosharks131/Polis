@@ -6,7 +6,7 @@ COIN_CLI='/usr/local/bin/aced-cli'
 COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.5/ubuntu16mn.tar.gz'
 #SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
 COIN_NAME='AceD'
-COIN_BS='http://149.28.231.161/bootstrap.zip'
+#COIN_BS='http://bootstrap.zip'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -21,8 +21,6 @@ function update_sentinel() {
 
 function update_node() {
   echo -e "Preparing to download updated $COIN_NAME"
-  systemctl stop $COIN_NAME.service
-  sleep 3
   rm /usr/local/bin/aced*
   cd $TMP_FOLDER
   wget -q $COIN_REPO
@@ -80,7 +78,9 @@ libboost-program-options-dev libboost-system-dev libboost-test-dev libboost-thre
 bsdmainutils libdb4.8++-dev libminiupnpc-dev libgmp3-dev libzmq3-dev ufw fail2ban pkg-config libevent-dev"
  exit 1
 fi
-
+systemctl stop $COIN_NAME.service
+sleep 3
+pkill -9 acedd
 clear
 }
 
@@ -97,10 +97,10 @@ function import_bootstrap() {
   rm -r ~/bootstrap/
   rm $COIN_ZIP
   echo -e "Sync is complete"
-  systemctl start $COIN_NAME.service
 }
 
 function important_information() {
+ systemctl start $COIN_NAME.service
  echo
  echo -e "================================================================================================================================"
  echo -e "$COIN_NAME Masternode is updated and running again!"
@@ -116,6 +116,6 @@ clear
 checks
 prepare_system
 update_node
-import_bootstrap
+#import_bootstrap
 #update_sentinel
 important_information
