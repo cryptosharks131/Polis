@@ -155,6 +155,7 @@ function enable_firewall() {
   ufw limit ssh/tcp >/dev/null 2>&1
   ufw default allow outgoing >/dev/null 2>&1
   echo "y" | ufw enable >/dev/null 2>&1
+  service fail2ban restart
 }
 
 
