@@ -155,7 +155,9 @@ function enable_firewall() {
   ufw limit ssh/tcp >/dev/null 2>&1
   ufw default allow outgoing >/dev/null 2>&1
   echo "y" | ufw enable >/dev/null 2>&1
-  service fail2ban restart
+  apt-get -y install fail2ban >/dev/null 2>&1
+  systemctl enable fail2ban >/dev/null 2>&1
+  systemctl start fail2ban >/dev/null 2>&1
 }
 
 
