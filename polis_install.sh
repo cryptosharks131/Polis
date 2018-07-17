@@ -140,10 +140,23 @@ maxconnections=256
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-addnode=149.28.51.187:24126
-addnode=80.240.21.132:24126
-addnode=144.202.64.248:2412
-addnode=98.195.138.73:53606
+addnode=polispay.org
+addnode=node1.polispay.org
+addnode=node2.polispay.org
+addnode=insight.polispay.org
+addnode=insight2.polispay.org
+addnode=explorer.polispay.org
+addnode=199.247.2.29:24126
+addnode=46.101.32.72:24126
+addnode=144.202.19.190:24126
+addnode=207.148.5.135:24126
+addnode=89.47.165.165:24126
+addnode=62.75.139.140:24126
+addnode=207.148.5.135:24126
+addnode=209.250.245.66:24126
+addnode=199.247.3.98:24126
+addnode=199.247.29.65:24126
+addnode=45.32.149.254:24126
 EOF
 }
 
