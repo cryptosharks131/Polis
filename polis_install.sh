@@ -1,13 +1,13 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='aced.conf'
-CONFIGFOLDER='/root/.acedcore'
-COIN_DAEMON='/usr/local/bin/acedd'
-COIN_CLI='/usr/local/bin/aced-cli'
-COIN_REPO='https://github.com/Acedcoin/AceD/releases/download/1.5/ubuntu16mn.tar.gz'
-#SENTINEL_REPO='https://github.com/cryptosharks131/sentinel'
-COIN_NAME='AceD'
+CONFIG_FILE='polis.conf'
+CONFIGFOLDER='/root/.poliscore'
+COIN_DAEMON='/usr/local/bin/polisd'
+COIN_CLI='/usr/local/bin/polis-cli'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.3.1/poliscore-1.3.1-x86_64-linux-gnu.tar.gz'
+SENTINEL_REPO='https://github.com/polispay/sentinel.git'
+COIN_NAME='Polis'
 COIN_PORT=24126
 #COIN_BS='http://bootstrap.zip'
 
@@ -42,13 +42,13 @@ function compile_node() {
   COIN_ZIP=$(echo $COIN_REPO | awk -F'/' '{print $NF}')
   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp aced{d,-cli} /usr/local/bin
+  cp polis{d,-cli} /usr/local/bin
   compile_error
   strip $COIN_DAEMON $COIN_CLI
   cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
-  chmod +x /usr/local/bin/acedd
-  chmod +x /usr/local/bin/aced-cli
+  chmod +x /usr/local/bin/polisd
+  chmod +x /usr/local/bin/polis-cli
   clear
 }
 
@@ -267,9 +267,9 @@ function import_bootstrap() {
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   unzip $COIN_ZIP >/dev/null 2>&1
   compile_error
-  cp -r ~/bootstrap/blocks ~/.acedcore/blocks
-  cp -r ~/bootstrap/chainstate ~/.acedcore/chainstate
-  cp -r ~/bootstrap/peers.dat ~/.acedcore/peers.dat
+  cp -r ~/bootstrap/blocks ~/.poliscore/blocks
+  cp -r ~/bootstrap/chainstate ~/.poliscore/chainstate
+  cp -r ~/bootstrap/peers.dat ~/.poliscore/peers.dat
   rm -r ~/bootstrap/
   rm $COIN_ZIP
 }
@@ -281,7 +281,7 @@ function setup_node() {
   create_key
   update_config
   enable_firewall
-  #install_sentinel
+  install_sentinel
   important_information
   configure_systemd
 }
