@@ -177,7 +177,7 @@ Hit 2. This will brin up an editor. Paste the following in it at the bottom.
 CTRL X to save it. Y for yes, then ENTER.
 
 3.Use `watch polis-cli getinfo` to check and wait til it's synced 
-  (look for blocks number and compare with block explorer http://block.polispay.org/ )
+  (look for blocks number and compare with block explorer https://insight.polispay.org/ )
 
 
 ## Cold Wallet Setup Part 2 
