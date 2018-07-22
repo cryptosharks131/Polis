@@ -206,6 +206,6 @@ mn1 1.2.3.4:24126 3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 12345678xxxxxxxxxxx
 7. Save the file, exit your wallet and reopen your wallet.
 8. Go to the "Masternodes" tab
 9. Click "Start All"
-10. You will see "WATCHDOG_EXPIRED". Just wait few minutes
+10. You will see "SENTINEL_PING_EXPIRED". Just wait some time, you should see a timer start in about 30 minutes.
 
-Cheers !
+Done !
