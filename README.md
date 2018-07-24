@@ -5,6 +5,7 @@ This script will install **Polis v1.3.1**.
 ***
 
 ## Installation:
+Log into the server using ssh (Putty for windows or terminal for Mac users) and run the following commands:
 ```
 wget -q https://raw.githubusercontent.com/cryptosharks131/Polis/master/polis_install.sh
 bash polis_install.sh
