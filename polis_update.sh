@@ -100,7 +100,7 @@ function import_bootstrap() {
 }
 
 function important_information() {
- polisd -reindex
+ polisd -reindex &
  sleep 10
  systemctl start $COIN_NAME.service
  echo
