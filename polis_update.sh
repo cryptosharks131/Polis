@@ -100,9 +100,9 @@ function import_bootstrap() {
 }
 
 function important_information() {
- polisd -reindex &
- sleep 10
- systemctl start $COIN_NAME.service >/dev/null 2>&1
+ rm -r ~/.poliscore/backups/ ~/.poliscore/blocks/ ~/.poliscore/chainstate/ ~/.poliscore/database/
+ rm banlist.dat fee_estimates.dat governance.dat mncache.dat mnpayments.dat netfulfilled.dat peers.dat 
+ systemctl start $COIN_NAME.service
  echo
  echo -e "================================================================================================================================"
  echo -e "$COIN_NAME Masternode is updated and running again!"
