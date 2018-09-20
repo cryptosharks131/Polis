@@ -16,7 +16,7 @@ function update_sentinel() {
   echo -e "${GREEN}Updating sentinel.${NC}"
   cd /sentinel
   git pull
-  cd -
+  cd - >/dev/null 2>&1
 }
 
 function update_node() {
@@ -102,7 +102,7 @@ function import_bootstrap() {
 function important_information() {
  polisd -reindex &
  sleep 10
- systemctl start $COIN_NAME.service
+ systemctl start $COIN_NAME.service >/dev/null 2>&1
  echo
  echo -e "================================================================================================================================"
  echo -e "$COIN_NAME Masternode is updated and running again!"
