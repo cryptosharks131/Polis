@@ -101,7 +101,7 @@ function import_bootstrap() {
 
 function important_information() {
  rm -r ~/.poliscore/backups/ ~/.poliscore/blocks/ ~/.poliscore/chainstate/ ~/.poliscore/database/
- rm banlist.dat fee_estimates.dat governance.dat mncache.dat mnpayments.dat netfulfilled.dat peers.dat 
+ rm ~/.poliscore/banlist.dat ~/.poliscore/fee_estimates.dat ~/.poliscore/governance.dat ~/.poliscore/mncache.dat ~/.poliscore/mnpayments.dat ~/.poliscore/netfulfilled.dat ~/.poliscore/peers.dat 
  systemctl start $COIN_NAME.service
  echo
  echo -e "================================================================================================================================"
