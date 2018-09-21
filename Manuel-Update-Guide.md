@@ -6,7 +6,7 @@ wget https://github.com/polispay/polis/releases/download/v1.4.1/poliscore-1.4.1-
 tar -xvf poliscore-1.4.1-x86_64-linux-gnu.tar.gz  
 rm poliscore-1.4.1-x86_64-linux-gnu.tar.gz  
 cp ~/poliscore-1.4.1/bin/polis{d,-cli} /usr/local/bin  
-polisd -reindex  
+polisd -reindex &  
 
 1. If the command 'polis-cli masternode status' says 'sucessfully started' then you are running again and are done.  
 2. If the command 'polis-cli masternode status' says 'node just started' then you should continue to wait and if this persist, make sure your blocks match the explorer and 'polis-cli mnsync status' says '"IsSynced": True'.  
