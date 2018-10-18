@@ -2,10 +2,10 @@
 
 cd  
 polis-cli stop  
-wget https://github.com/polispay/polis/releases/download/v1.3.1/poliscore-1.3.1-x86_64-linux-gnu.tar.gz  
-tar -xvf poliscore-1.3.1-x86_64-linux-gnu.tar.gz  
-rm poliscore-1.3.1-x86_64-linux-gnu.tar.gz  
-cp ~/poliscore-1.3.1/bin/polis{d,-cli} /usr/local/bin  
+wget https://github.com/polispay/polis/releases/download/v1.4.3/poliscore-1.4.3-x86_64-linux-gnu.tar.gz  
+tar -xvf poliscore-1.4.3-x86_64-linux-gnu.tar.gz  
+rm poliscore-1.4.3-x86_64-linux-gnu.tar.gz  
+cp ~/poliscore-1.4.3/bin/polis{d,-cli} /usr/local/bin/  
 polisd -reindex &  
 
 1. If the command 'polis-cli masternode status' says 'sucessfully started' then you are running again and are done.  
