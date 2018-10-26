@@ -74,6 +74,15 @@ SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py
 ```
 ***
 
+## Import Polis Bootstrap
+The first line (rm bootstrap.sh) is not required the very first time you update the node and will return an error if you run it.  This is fine, continue with the update script.
+```
+rm bootstrap.sh*
+wget -q https://raw.githubusercontent.com/cryptosharks131/Polis/master/bootstrap.sh
+bash bootstrap.sh
+```
+***
+
 ## Donations:  
 
 Any donation is highly appreciated.  
