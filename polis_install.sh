@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
+TMP_BS=$(mktemp -d)
 CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
@@ -9,7 +10,7 @@ COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.3/poliscore-
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
-#COIN_BS='http://bootstrap.zip'
+COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/1.4.3-bootstrap/bootstrap.tar.gz'
 
 
 NODEIP=$(curl -s4 icanhazip.com)
@@ -275,22 +276,25 @@ function important_information() {
 }
 
 function import_bootstrap() {
+  echo -e "Importing Bootstrap For $COIN_NAME"
+  cd $TMP_BS
   wget -q $COIN_BS
   compile_error
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  unzip $COIN_ZIP >/dev/null 2>&1
+  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp -r ~/bootstrap/blocks ~/.poliscore/blocks
-  cp -r ~/bootstrap/chainstate ~/.poliscore/chainstate
-  cp -r ~/bootstrap/peers.dat ~/.poliscore/peers.dat
-  rm -r ~/bootstrap/
-  rm $COIN_ZIP
+  cp -r blocks $CONFIGFOLDER
+  cp -r chainstate $CONFIGFOLDER
+  cp -r peers.dat $CONFIGFOLDER
+  cd - >/dev/null 2>&1
+  rm -rf $TMP_BS >/dev/null 2>&1
+  clear
 }
 
 function setup_node() {
   get_ip
   create_config
-  #import_bootstrap
+  import_bootstrap
   create_key
   update_config
   enable_firewall
