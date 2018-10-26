@@ -1,12 +1,14 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
+TMP_BS=$(mktemp -d)
+CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
 COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.3/poliscore-1.4.3-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
-#COIN_BS='http://bootstrap.zip'
+COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/1.4.3-bootstrap/bootstrap.tar.gz'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -85,18 +87,18 @@ clear
 }
 
 function import_bootstrap() {
-  rm -r ~/.poliscore/blocks ~/.poliscore/chainstate ~/.poliscore/peers.dat
+  echo -e "Importing Bootstrap For $COIN_NAME"
+  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat
+  cd $TMP_BS
   wget -q $COIN_BS
   compile_error
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  unzip $COIN_ZIP >/dev/null 2>&1
+  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp -r ~/bootstrap/blocks ~/.poliscore/blocks
-  cp -r ~/bootstrap/chainstate ~/.poliscore/chainstate
-  cp -r ~/bootstrap/peers.dat ~/.poliscore/peers.dat
-  rm -r ~/bootstrap/
-  rm $COIN_ZIP
-  echo -e "Sync is complete"
+  cp -r blocks chainstate peers.dat $CONFIGFOLDER
+  cd - >/dev/null 2>&1
+  rm -rf $TMP_BS >/dev/null 2>&1
+  clear
 }
 
 function important_information() {
