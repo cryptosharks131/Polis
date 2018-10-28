@@ -8,6 +8,7 @@
   echo -e "Importing Bootstrap For $COIN_NAME"
   systemctl stop $COIN_NAME >/dev/null 2>&1
   $COIN_CLI stop >/dev/null 2>&1
+  sleep 3
   pkill -9 $COIN_DAEMON
   rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat
   cd $TMP_BS
@@ -20,4 +21,5 @@
   systemctl start $COIN_NAME >/dev/null 2>&1
   sleep 3
   $COIN_DAEMON & >/dev/null 2>&1
+  sleep 3 >/dev/null 2>&1
   echo -e "Import Bootstrap Complete"
