@@ -89,7 +89,7 @@ clear
 
 function import_bootstrap() {
   echo -e "Importing Bootstrap For $COIN_NAME"
-  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat
+  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
   cd $TMP_BS
   wget -q $COIN_BS
   compile_error
