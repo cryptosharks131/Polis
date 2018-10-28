@@ -80,9 +80,10 @@ libboost-program-options-dev libboost-system-dev libboost-test-dev libboost-thre
 bsdmainutils libdb4.8++-dev libminiupnpc-dev libgmp3-dev libzmq3-dev ufw fail2ban pkg-config libevent-dev"
  exit 1
 fi
-systemctl stop $COIN_NAME.service
+systemctl stop $COIN_NAME >/dev/null 2>&1
+$COIN_CLI stop >/dev/null 2>&1
 sleep 3
-pkill -9 polisd
+pkill -9 $COIN_DAEMON
 clear
 }
 
@@ -102,9 +103,10 @@ function import_bootstrap() {
 }
 
 function important_information() {
- rm -r ~/.poliscore/backups/ ~/.poliscore/blocks/ ~/.poliscore/chainstate/ ~/.poliscore/database/
- rm ~/.poliscore/banlist.dat ~/.poliscore/fee_estimates.dat ~/.poliscore/governance.dat ~/.poliscore/mncache.dat ~/.poliscore/mnpayments.dat ~/.poliscore/netfulfilled.dat ~/.poliscore/peers.dat 
- systemctl start $COIN_NAME.service
+ systemctl start $COIN_NAME >/dev/null 2>&1
+ sleep 3
+ $COIN_DAEMON & >/dev/null 2>&1
+ sleep 3 >/dev/null 2>&1
  echo
  echo -e "================================================================================================================================"
  echo -e "$COIN_NAME Masternode is updated and running again!"
