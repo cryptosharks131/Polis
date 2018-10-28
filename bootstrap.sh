@@ -10,7 +10,7 @@
   $COIN_CLI stop >/dev/null 2>&1
   sleep 3
   pkill -9 $COIN_DAEMON
-  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat
+  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
   cd $TMP_BS
   wget -q $COIN_BS
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
