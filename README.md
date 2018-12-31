@@ -1,7 +1,7 @@
 # Polis
 Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
 This will require a VPS, I use [Vultr](https://www.vultr.com/?ref=7622400).  The $5/mo server size will suffice.  
-This script will install **Polis v1.4.6**.
+This script will install **Polis v1.4.7**.
 ***
 
 ## Installation:
