@@ -292,10 +292,10 @@ function import_bootstrap() {
 }
 
 function add_swap() {
-sudo fallocate -l 4G /swapfile >/dev/null 2>&1
-sudo chmod 600 /swapfile >/dev/null 2>&1
-sudo mkswap /swapfile >/dev/null 2>&1
-sudo swapon /swapfile >/dev/null 2>&1
+  sudo fallocate -l 4G /swapfile >/dev/null 2>&1
+  sudo chmod 600 /swapfile >/dev/null 2>&1
+  sudo mkswap /swapfile >/dev/null 2>&1
+  sudo swapon /swapfile >/dev/null 2>&1
   cat << EOF >> /etc/sysctl.conf
 vm.swappiness=10
 EOF
