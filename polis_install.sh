@@ -291,6 +291,9 @@ function import_bootstrap() {
   clear
 }
 
+function add_swap() {
+}
+
 function setup_node() {
   get_ip
   create_config
@@ -301,8 +304,8 @@ function setup_node() {
   install_sentinel
   important_information
   configure_systemd
+  add_swap
 }
-
 
 ##### Main #####
 clear
