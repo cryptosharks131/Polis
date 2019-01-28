@@ -6,7 +6,7 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.7/poliscore-1.4.7-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.8/poliscore-1.4.8-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
@@ -307,7 +307,7 @@ EOF
 function setup_node() {
   get_ip
   create_config
-  import_bootstrap
+  #import_bootstrap
   create_key
   update_config
   enable_firewall
