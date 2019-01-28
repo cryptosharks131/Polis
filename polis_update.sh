@@ -5,7 +5,7 @@ TMP_BS=$(mktemp -d)
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.7/poliscore-1.4.7-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.8/poliscore-1.4.8-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/v1.4.7/bootstrap.tar.gz'
@@ -103,6 +103,7 @@ function import_bootstrap() {
 }
 
 function important_information() {
+ rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON & >/dev/null 2>&1
@@ -122,6 +123,6 @@ clear
 checks
 prepare_system
 update_node
-import_bootstrap
+#import_bootstrap
 update_sentinel
 important_information
