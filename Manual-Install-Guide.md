@@ -91,7 +91,7 @@ apt-get -y install libdb4.8-dev
 apt-get -y install libdb4.8++-dev
 ```
 ```
-wget https://github.com/polispay/polis/releases/download/v1.4.8/poliscore-1.4.8-x86_64-linux-gnu.tar.gz
+wget https://github.com/polispay/polis/releases/download/v1.4.8.1/poliscore-1.4.8-x86_64-linux-gnu.tar.gz
 ```
 ```
 tar -xvf poliscore-1.4.8-x86_64-linux-gnu.tar.gz
