@@ -106,6 +106,8 @@ function update_config() {
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 connect=insight.polispay.org
 connect=explorer.polispay.org
+connect=23.92.216.30
+connect=45.76.220.156
 EOF
 }
 
