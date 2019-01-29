@@ -102,6 +102,13 @@ function import_bootstrap() {
   clear
 }
 
+function update_config() {
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+connect=insight.polispay.org
+connect=explorer.polispay.org
+EOF
+}
+
 function important_information() {
  $COIN_DAEMON -daemon -reindex
  sleep 15
@@ -127,5 +134,6 @@ checks
 prepare_system
 update_node
 import_bootstrap
+update_config
 update_sentinel
 important_information
