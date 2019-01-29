@@ -24,6 +24,6 @@
   sleep 5
   systemctl start $COIN_NAME >/dev/null 2>&1
   sleep 3
-  $COIN_DAEMON & >/dev/null 2>&1
+  $COIN_DAEMON -daemon >/dev/null 2>&1
   sleep 3 >/dev/null 2>&1
   echo -e "Import Bootstrap Complete"
