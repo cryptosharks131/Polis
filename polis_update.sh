@@ -108,6 +108,13 @@ connect=insight.polispay.org
 connect=explorer.polispay.org
 connect=23.92.216.30
 connect=45.76.220.156
+addnode=172.104.23.226
+addnode=45.56.99.105
+addnode=50.116.51.197
+addnode=173.255.237.63
+addnode=5.8.101.60
+addnode=95.179.181.22
+addnode=45.76.133.133
 EOF
 }
 
