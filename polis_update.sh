@@ -103,6 +103,10 @@ function import_bootstrap() {
 }
 
 function important_information() {
+ $COIN_DAEMON -daemon -reindex
+ sleep 15
+ $COIN_CLI stop >/dev/null 2>&1
+ sleep 5
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON & >/dev/null 2>&1
