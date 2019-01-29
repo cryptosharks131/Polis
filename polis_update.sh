@@ -103,7 +103,6 @@ function import_bootstrap() {
 }
 
 function important_information() {
- rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON & >/dev/null 2>&1
@@ -123,6 +122,6 @@ clear
 checks
 prepare_system
 update_node
-#import_bootstrap
+import_bootstrap
 update_sentinel
 important_information
