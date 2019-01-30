@@ -3,6 +3,7 @@
 TMP_FOLDER=$(mktemp -d)
 TMP_BS=$(mktemp -d)
 CONFIGFOLDER='/root/.poliscore'
+CONFIG_FILE='polis.conf'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
 COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.8.1/poliscore-1.4.8.1-x86_64-linux-gnu.tar.gz'
