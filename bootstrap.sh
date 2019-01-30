@@ -3,7 +3,7 @@
   COIN_DAEMON='/usr/local/bin/polisd'
   COIN_CLI='/usr/local/bin/polis-cli'
   COIN_NAME='Polis'
-  COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/1.4.8/bootstrap.tar.gz'  
+  COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/v1.4.8.1/bootstrap.tar.gz'  
 
   echo -e "Importing Bootstrap For $COIN_NAME"
   systemctl stop $COIN_NAME >/dev/null 2>&1
@@ -18,10 +18,10 @@
   cp -r blocks chainstate peers.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
-  $COIN_DAEMON -daemon -reindex
-  sleep 15
-  $COIN_CLI stop >/dev/null 2>&1
-  sleep 5
+  #$COIN_DAEMON -daemon -reindex
+  #sleep 15
+  #$COIN_CLI stop >/dev/null 2>&1
+  #sleep 5
   systemctl start $COIN_NAME >/dev/null 2>&1
   sleep 3
   $COIN_DAEMON -daemon >/dev/null 2>&1
