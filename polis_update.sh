@@ -103,7 +103,8 @@ function import_bootstrap() {
 }
 
 function update_config() {
-  sed -i ',addnode=*,d' $CONFIGFOLDER/$CONFIG_FILE
+  sed -i '/addnode=*/d' $CONFIGFOLDER/$CONFIG_FILE
+  sed -i '/connect=*/d' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 addnode=explorer.polispay.org
 addnode=insight.polispay.org
