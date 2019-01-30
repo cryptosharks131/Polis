@@ -103,18 +103,17 @@ function import_bootstrap() {
 }
 
 function update_config() {
+  sed -i ',addnode=*,d' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-connect=insight.polispay.org
-connect=explorer.polispay.org
-connect=23.92.216.30
-connect=45.76.220.156
-addnode=172.104.23.226
-addnode=45.56.99.105
-addnode=50.116.51.197
-addnode=173.255.237.63
-addnode=5.8.101.60
-addnode=95.179.181.22
-addnode=45.76.133.133
+addnode=explorer.polispay.org
+addnode=insight.polispay.org
+addnode=23.92.216.30
+addnode=45.76.220.156
+addnode=104.238.154.100
+addnode=45.76.153.10
+addnode=45.76.135.238
+addnode=199.247.26.161
+addnode=199.247.9.68
 EOF
 }
 
