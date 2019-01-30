@@ -83,10 +83,10 @@ EOF
   systemctl daemon-reload
   sleep 3
   
-  $COIN_DAEMON -daemon -reindex
-  sleep 15
-  $COIN_CLI stop >/dev/null 2>&1
-  sleep 5
+  #$COIN_DAEMON -daemon -reindex
+  #sleep 15
+  #$COIN_CLI stop >/dev/null 2>&1
+  #sleep 5
   systemctl start $COIN_NAME.service
   systemctl enable $COIN_NAME.service >/dev/null 2>&1
 
