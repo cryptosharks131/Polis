@@ -9,7 +9,7 @@ COIN_CLI='/usr/local/bin/polis-cli'
 COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.8.1/poliscore-1.4.8.1-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
-COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/v1.4.8.1/bootstrap.tar.gz'
+COIN_BS='http://wbs.cryptosharkspool.com/polis/bootstrap.tar.gz'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
