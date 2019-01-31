@@ -155,6 +155,10 @@ addnode=45.76.153.10
 addnode=45.76.135.238
 addnode=199.247.26.161
 addnode=199.247.9.68
+addnode=104.238.154.100
+addnode=3.82.98.85
+addnode=34.239.134.229
+addnode=178.128.165.119
 EOF
 }
 
