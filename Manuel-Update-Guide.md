@@ -2,9 +2,9 @@
 
 cd  
 polis-cli stop  
-wget https://github.com/polispay/polis/releases/download/v1.4.8.1/poliscore-1.4.8.1-x86_64-linux-gnu.tar.gz  
-tar -xvf poliscore-1.4.8.1-x86_64-linux-gnu.tar.gz 
-rm poliscore-1.4.8.1-x86_64-linux-gnu.tar.gz  
+wget https://github.com/polispay/polis/releases/download/v1.4.9/poliscore-1.4.9-x86_64-linux-gnu.tar.gz  
+tar -xvf poliscore-1.4.9-x86_64-linux-gnu.tar.gz 
+rm poliscore-1.4.9-x86_64-linux-gnu.tar.gz  
 cp ~/bin/polis{d,-cli} /usr/local/bin/  
 polisd -reindex &  
 
