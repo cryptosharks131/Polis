@@ -90,7 +90,7 @@ clear
 
 function import_bootstrap() {
   echo -e "Importing Bootstrap For $COIN_NAME"
-#   rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
+  rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
 #   cd $TMP_BS
   cd $CONFIGFOLDER
   wget -q $COIN_BS
