@@ -164,7 +164,7 @@ clear
 checks
 prepare_system
 update_node
-import_bootstrap
+#import_bootstrap
 update_config
 update_sentinel
 important_information
