@@ -3,7 +3,7 @@
   COIN_DAEMON='/usr/local/bin/polisd'
   COIN_CLI='/usr/local/bin/polis-cli'
   COIN_NAME='Polis'
-  COIN_BS='http://explorer.polispay.org/images/bootstrap.dat'  
+  COIN_BS='https://hub.polispay.com/polis/bootstrap.dat'  
 
   echo -e "Importing Bootstrap For $COIN_NAME"
   systemctl stop $COIN_NAME >/dev/null 2>&1
