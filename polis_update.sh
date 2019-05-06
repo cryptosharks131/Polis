@@ -9,7 +9,7 @@ COIN_CLI='/usr/local/bin/polis-cli'
 COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.13/poliscore-1.4.13-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
-COIN_BS='http://explorer.polispay.org/images/bootstrap.dat'
+COIN_BS='https://github.com/cryptosharks131/Polis/releases/download/v1.4.13/bootstrap.tar.gz'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -91,17 +91,17 @@ clear
 function import_bootstrap() {
   echo -e "Importing Bootstrap For $COIN_NAME"
   rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
-#   cd $TMP_BS
-  cd $CONFIGFOLDER
+  cd $TMP_BS
+#   cd $CONFIGFOLDER
   wget -q $COIN_BS
   compile_error
-  cd
-#   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-#   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
-#   compile_error
-#   cp -r blocks chainstate $CONFIGFOLDER
-#   cd - >/dev/null 2>&1
-#   rm -rf $TMP_BS >/dev/null 2>&1
+#   cd
+  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
+  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
+  compile_error
+  cp -r blocks chainstate peers.dat $CONFIGFOLDER
+  cd - >/dev/null 2>&1
+  rm -rf $TMP_BS >/dev/null 2>&1
   clear
 }
 
