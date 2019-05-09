@@ -99,7 +99,7 @@ function import_bootstrap() {
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp -r blocks chainstate peers.dat $CONFIGFOLDER
+  cp -r blocks chainstate $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
   clear
@@ -109,13 +109,12 @@ function update_config() {
   sed -i '/addnode=*/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/connect=*/d' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-addnode=51.83.76.173
-addnode=80.211.234.167
-addnode=107.22.45.11
-addnode=45.32.234.82
-addnode=18.208.147.190
-addnode=167.99.224.111
-addnode=46.101.121.15
+addnode=insight.polispay.org
+addnode=192.254.65.126:20000
+addnode=192.254.65.126:20001
+addnode=192.254.65.126:20002
+addnode=192.254.65.126:20003
+addnode=23.92.216.30
 EOF
 }
 
