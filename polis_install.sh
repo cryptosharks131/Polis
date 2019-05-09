@@ -6,11 +6,11 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.13/poliscore-1.4.13-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.14/poliscore-1.4.14-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
-COIN_BS='https://hub.polispay.com/polis/bootstrap.dat'
+COIN_BS='https://hub.polispay.com/polis/bootstrap.tar.gz'
 
 
 NODEIP=$(curl -s4 icanhazip.com)
@@ -273,19 +273,19 @@ function important_information() {
 
 function import_bootstrap() {
   echo -e "Importing Bootstrap For $COIN_NAME"
-#   cd $TMP_BS
-  cd $CONFIGFOLDER
+  cd $TMP_BS
+#   cd $CONFIGFOLDER
   wget -q $COIN_BS
-#   compile_error
-#   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-#   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
+  compile_error
+  COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
+  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
   cd
-#   cp -r blocks $CONFIGFOLDER
-#   cp -r chainstate $CONFIGFOLDER
+  cp -r blocks $CONFIGFOLDER
+  cp -r chainstate $CONFIGFOLDER
 #   cp -r peers.dat $CONFIGFOLDER
-#   cd - >/dev/null 2>&1
-#   rm -rf $TMP_BS >/dev/null 2>&1
+  cd - >/dev/null 2>&1
+  rm -rf $TMP_BS >/dev/null 2>&1
   clear
 }
 
