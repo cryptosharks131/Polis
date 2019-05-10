@@ -109,12 +109,40 @@ function update_config() {
   sed -i '/addnode=*/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/connect=*/d' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-addnode=insight.polispay.org
-addnode=192.254.65.126:20000
-addnode=192.254.65.126:20001
-addnode=192.254.65.126:20002
-addnode=192.254.65.126:20003
-addnode=23.92.216.30
+addnode=188.68.35.102:24126                                                                                                                                                                                                                                                                   188.174.129.207:24126    
+addnode=185.233.106.70:24126
+addnode=94.16.113.74:24126
+addnode=94.16.112.184:24126
+addnode=46.232.250.59:24126
+addnode=4.16.120.68:24126
+addnode=185.243.9.88:24126
+addnode=91.223.147.100:24126
+addnode=91.223.147.101:24126
+addnode=91.223.147.102:24126
+addnode=91.223.147.103:24126
+addnode=91.223.147.104:24126
+addnode=91.223.147.105:24126
+addnode=91.223.147.107:24126
+addnode=91.223.147.108:24126
+addnode=91.223.147.109:24126
+addnode=91.223.147.155:24126
+addnode=91.223.147.156:24126
+addnode=91.223.147.157:24126
+addnode=91.223.147.158:24126
+addnode=91.223.147.159:24126
+addnode=91.223.147.100:24126
+addnode=91.223.147.101:24126
+addnode=91.223.147.102:24126
+addnode=91.223.147.103:24126
+addnode=91.223.147.104:24126
+addnode=91.223.147.105:24126
+addnode=91.223.147.107:24126
+addnode=91.223.147.109:24126
+addnode=91.223.147.155:24126
+addnode=91.223.147.156:24126
+addnode=91.223.147.157:24126
+addnode=91.223.147.158:24126
+addnode=91.223.147.159:24126
 EOF
 }
 
