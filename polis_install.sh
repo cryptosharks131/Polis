@@ -332,7 +332,7 @@ EOF
 function setup_node() {
   get_ip
   create_config
-  import_bootstrap
+  #import_bootstrap
   create_key
   update_config
   enable_firewall
