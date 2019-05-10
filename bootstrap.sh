@@ -11,7 +11,7 @@
   sleep 3
   pkill -9 $COIN_DAEMON
 #   cd $CONFIGFOLDER
-  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat
+  rm -r $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
   cd $TMP_BS
   wget -q $COIN_BS
 #   cd
