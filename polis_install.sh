@@ -10,7 +10,7 @@ COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.14/poliscore
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
-COIN_BS='https://hub.polispay.com/polis/bootstrap.tar.gz'
+COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.14/bootstrap.tar.gz'
 
 
 NODEIP=$(curl -s4 icanhazip.com)
