@@ -109,7 +109,7 @@ function update_config() {
   sed -i '/addnode=*/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/connect=*/d' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-addnode=188.68.35.102:24126                                                                                                                                                                                                                                                                   188.174.129.207:24126    
+addnode=188.68.35.102:24126
 addnode=185.233.106.70:24126
 addnode=94.16.113.74:24126
 addnode=94.16.112.184:24126
