@@ -147,7 +147,6 @@ EOF
 }
 
 function important_information() {
- rm $CONFIGFOLDER/{peers.dat,banlist.dat}
  $COIN_DAEMON -daemon -reindex
  sleep 15
  $COIN_CLI stop >/dev/null 2>&1
@@ -171,7 +170,7 @@ clear
 checks
 prepare_system
 update_node
-#import_bootstrap
+import_bootstrap
 update_config
 update_sentinel
 important_information
