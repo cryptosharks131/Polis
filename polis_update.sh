@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.poliscore'
 CONFIG_FILE='polis.conf'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://hub.polispay.com/polis/v1.4.15/poliscore-1.4.14-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://hub.polispay.com/polis/v1.4.15/poliscore-1.4.15-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.14/bootstrap.tar.gz'
@@ -109,44 +109,11 @@ function update_config() {
   sed -i '/addnode=*/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/connect=*/d' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-addnode=188.68.35.102:24126
-addnode=185.233.106.70:24126
-addnode=94.16.113.74:24126
-addnode=94.16.112.184:24126
-addnode=46.232.250.59:24126
-addnode=4.16.120.68:24126
-addnode=185.243.9.88:24126
-addnode=91.223.147.100:24126
-addnode=91.223.147.101:24126
-addnode=91.223.147.102:24126
-addnode=91.223.147.103:24126
-addnode=91.223.147.104:24126
-addnode=91.223.147.105:24126
-addnode=91.223.147.107:24126
-addnode=91.223.147.108:24126
-addnode=91.223.147.109:24126
-addnode=91.223.147.155:24126
-addnode=91.223.147.156:24126
-addnode=91.223.147.157:24126
-addnode=91.223.147.158:24126
-addnode=91.223.147.159:24126
-addnode=91.223.147.100:24126
-addnode=91.223.147.101:24126
-addnode=91.223.147.102:24126
-addnode=91.223.147.103:24126
-addnode=91.223.147.104:24126
-addnode=91.223.147.105:24126
-addnode=91.223.147.107:24126
-addnode=91.223.147.109:24126
-addnode=91.223.147.155:24126
-addnode=91.223.147.156:24126
-addnode=91.223.147.157:24126
-addnode=91.223.147.158:24126
-addnode=91.223.147.159:24126
 EOF
 }
 
 function important_information() {
+ rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
  $COIN_DAEMON -daemon -reindex
  sleep 15
  $COIN_CLI stop >/dev/null 2>&1
@@ -170,7 +137,7 @@ clear
 checks
 prepare_system
 update_node
-import_bootstrap
+#import_bootstrap
 update_config
 update_sentinel
 important_information
