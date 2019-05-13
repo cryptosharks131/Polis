@@ -20,10 +20,10 @@
   cp -r blocks chainstate $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
-  #$COIN_DAEMON -daemon -reindex
-  #sleep 15
-  #$COIN_CLI stop >/dev/null 2>&1
-  #sleep 5
+  $COIN_DAEMON -daemon -reindex
+  sleep 15
+  $COIN_CLI stop >/dev/null 2>&1
+  sleep 5
   systemctl start $COIN_NAME >/dev/null 2>&1
   sleep 3
   $COIN_DAEMON -daemon >/dev/null 2>&1
