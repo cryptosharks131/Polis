@@ -6,11 +6,11 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://hub.polispay.com/polis/v1.4.15/poliscore-1.4.15-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.15/poliscore-1.4.15-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
-COIN_BS='https://hub.polispay.com/polis/bootstrap.tar.gz'
+COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.15/bootstrap.tar.gz'
 
 
 NODEIP=$(curl -s4 icanhazip.com)
