@@ -6,11 +6,11 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.14/poliscore-1.4.14-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.15/poliscore-1.4.15-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
-COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.14/bootstrap.tar.gz'
+COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.15/bootstrap.tar.gz'
 
 
 NODEIP=$(curl -s4 icanhazip.com)
@@ -84,10 +84,6 @@ EOF
   systemctl daemon-reload
   sleep 3
   
-  #$COIN_DAEMON -daemon -reindex
-  #sleep 15
-  #$COIN_CLI stop >/dev/null 2>&1
-  #sleep 5
   systemctl start $COIN_NAME.service
   systemctl enable $COIN_NAME.service >/dev/null 2>&1
 
@@ -147,40 +143,6 @@ maxconnections=64
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-addnode=188.68.35.102:24126
-addnode=185.233.106.70:24126
-addnode=94.16.113.74:24126
-addnode=94.16.112.184:24126
-addnode=46.232.250.59:24126
-addnode=4.16.120.68:24126
-addnode=185.243.9.88:24126
-addnode=91.223.147.100:24126
-addnode=91.223.147.101:24126
-addnode=91.223.147.102:24126
-addnode=91.223.147.103:24126
-addnode=91.223.147.104:24126
-addnode=91.223.147.105:24126
-addnode=91.223.147.107:24126
-addnode=91.223.147.108:24126
-addnode=91.223.147.109:24126
-addnode=91.223.147.155:24126
-addnode=91.223.147.156:24126
-addnode=91.223.147.157:24126
-addnode=91.223.147.158:24126
-addnode=91.223.147.159:24126
-addnode=91.223.147.100:24126
-addnode=91.223.147.101:24126
-addnode=91.223.147.102:24126
-addnode=91.223.147.103:24126
-addnode=91.223.147.104:24126
-addnode=91.223.147.105:24126
-addnode=91.223.147.107:24126
-addnode=91.223.147.109:24126
-addnode=91.223.147.155:24126
-addnode=91.223.147.156:24126
-addnode=91.223.147.157:24126
-addnode=91.223.147.158:24126
-addnode=91.223.147.159:24126
 EOF
 }
 
@@ -307,12 +269,16 @@ function import_bootstrap() {
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cd
+#   cd
   cp -r blocks $CONFIGFOLDER
   cp -r chainstate $CONFIGFOLDER
 #   cp -r peers.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
+  $COIN_DAEMON -daemon -reindex
+  sleep 15
+  $COIN_CLI stop
+  sleep 3
   clear
 }
 
@@ -332,7 +298,7 @@ EOF
 function setup_node() {
   get_ip
   create_config
-  #import_bootstrap
+  import_bootstrap
   create_key
   update_config
   enable_firewall
