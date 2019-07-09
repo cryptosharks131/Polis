@@ -6,7 +6,7 @@ wget https://github.com/polispay/polis/releases/download/v1.4.18/poliscore-1.4.1
 tar -xvf poliscore-1.4.18-x86_64-linux-gnu.tar.gz 
 rm poliscore-1.4.18-x86_64-linux-gnu.tar.gz  
 rm /usr/local/bin/polis*  
-cp poliscore-1.4.16/bin/polis{d,-cli} /usr/local/bin/  
+cp poliscore-1.4.18/bin/polis{d,-cli} /usr/local/bin/  
 rm -r poliscore-1.4.18  
 polisd &  
 
