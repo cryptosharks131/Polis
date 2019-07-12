@@ -208,4 +208,6 @@ mn1 1.2.3.4:24126 3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 12345678xxxxxxxxxxx
 9. Click "Start All"
 10. You will see "SENTINEL_PING_EXPIRED". Just wait some time, you should see a timer start in about 30 minutes.
 
-Done !
+Done !  
+
+Note: 15 confirmations are needed to avoid error "Failed to verify MNB".
