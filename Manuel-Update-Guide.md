@@ -14,5 +14,7 @@ polisd &
 2. If the command 'polis-cli masternode status' says 'node just started' then you should continue to wait and if this persist, make sure your blocks match the explorer and 'polis-cli mnsync status' says '"IsSynced": True'.  
 3. If the command 'polis-cli masternode status' says 'invalid protocol' or 'new start' or 'not in list' then you will need to restart this MN from the local wallet.  
 
-## Updating Polis
+## Updating sentinel. 
 cd /sentinel && git pull  
+
+Note: 15 confirmations are needed to avoid error "Failed to verify MNB".
