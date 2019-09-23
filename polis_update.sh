@@ -109,7 +109,7 @@ function update_config() {
   sed -i '/^addnode=/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/^connect=/d' $CONFIGFOLDER/$CONFIG_FILE
   if grep -q "masternodeprivkey=" $CONFIGFOLDER/$CONFIG_FILE; then
-    sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
+    #sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
   fi
 #   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
@@ -136,7 +136,7 @@ function important_information() {
 }
 
 function update_key() {
-  echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new Masternode PrivKey."
+  echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new BLS PrivKey."
   echo -e "Enter your ${RED}$COIN_NAME Masternode Private Key${NC}. Leave it blank to generate a new ${RED}Masternode Private Key${NC} for you:"
   read -e COINKEY
   if [[ -z "$COINKEY" ]]; then
@@ -156,8 +156,17 @@ function update_key() {
   $COIN_CLI stop
 fi
 clear
-  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 masternodeblsprivkey=$COINKEY
+EOF
+
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+logintimestamps=1
+maxconnections=64
+#bind=$NODEIP
+masternode=1
+externalip=$NODEIP:$COIN_PORT
+masternodeprivkey=$COINKEY
 EOF
 }
 
