@@ -113,7 +113,7 @@ function update_config() {
   then
     echo -e "No Change!"
   else
-    #sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
+    sed -i '/^masternode=1/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
 #     BRIDGE='yes'
   fi
@@ -167,6 +167,7 @@ clear
 
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 masternodeblsprivkey=$COINKEY
+masternode=1
 EOF
 
 }
