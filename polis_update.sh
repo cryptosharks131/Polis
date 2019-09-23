@@ -135,7 +135,7 @@ function important_information() {
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
- if $BRIDGE == 'yes'; then
+ if [$BRIDGE -eq 'yes']; then
   echo -e "New BLS PrivKey: $COINKEY"
  fi
 }
