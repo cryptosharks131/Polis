@@ -155,15 +155,15 @@ function update_key() {
    exit 1
   fi
   COINKEY=$($COIN_CLI bls generate)
-  COINKEYPRIV=$(grep -Po '"secret":.*?[^\\]",' $COINKEY)
-  COINKEYPUB=$(grep -Po '"public":.*?[^\\]",' $COINKEY)
+  COINKEYPRIV=$(echo "$line" | grep -Po '"secret":.*?[^\\]",')
+  COINKEYPUB=$(echo "$line" | grep -Po '"public":.*?[^\\]",')
   if [ "$?" -gt "0" ];
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
     COINKEY=$($COIN_CLI bls generate)
-    COINKEYPRIV=$(grep -Po '"secret":.*?[^\\]",' $COINKEY)
-    COINKEYPUB=$(grep -Po '"public":.*?[^\\]",' $COINKEY)
+    COINKEYPRIV=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",')
+    COINKEYPUB=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]",')
   fi
   $COIN_CLI stop
 fi
