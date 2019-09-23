@@ -156,18 +156,11 @@ function update_key() {
   $COIN_CLI stop
 fi
 clear
-cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 masternodeblsprivkey=$COINKEY
 EOF
 
-  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-logintimestamps=1
-maxconnections=64
-#bind=$NODEIP
-masternode=1
-externalip=$NODEIP:$COIN_PORT
-masternodeprivkey=$COINKEY
-EOF
 }
 
 ##### Main #####
