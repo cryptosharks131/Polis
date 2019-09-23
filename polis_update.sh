@@ -108,6 +108,10 @@ function import_bootstrap() {
 function update_config() {
   sed -i '/^addnode=/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/^connect=/d' $CONFIGFOLDER/$CONFIG_FILE
+  if grep -q "masternodeprivkey=" $CONFIGFOLDER/$CONFIG_FILE; then
+    sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
+    update_key
+  fi
 #   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 # EOF
 }
@@ -129,6 +133,32 @@ function important_information() {
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
+}
+
+function update_key() {
+  echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new Masternode PrivKey."
+  echo -e "Enter your ${RED}$COIN_NAME Masternode Private Key${NC}. Leave it blank to generate a new ${RED}Masternode Private Key${NC} for you:"
+  read -e COINKEY
+  if [[ -z "$COINKEY" ]]; then
+  $COIN_DAEMON -daemon
+  sleep 30
+  if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
+   echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
+   exit 1
+  fi
+  COINKEY=$($COIN_CLI bls generate)
+  if [ "$?" -gt "0" ];
+    then
+    echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
+    sleep 30
+    COINKEY=$($COIN_CLI masternode genkey)
+  fi
+  $COIN_CLI stop
+fi
+clear
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+masternodeblsprivkey=$COINKEY
+EOF
 }
 
 ##### Main #####
