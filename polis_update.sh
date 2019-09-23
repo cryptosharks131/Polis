@@ -139,7 +139,7 @@ function important_information() {
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
 #  if [$BRIDGE -eq 'yes']; then
-#   echo -e "New BLS PrivKey: $COINKEY"
+#   echo -e "New BLS PrivKey: $COINKEYPUB"
 #  fi
 }
 
@@ -155,18 +155,22 @@ function update_key() {
    exit 1
   fi
   COINKEY=$($COIN_CLI bls generate)
+  COINKEYPRIV=grep -Po '"secret":.*?[^\\]",' $COINKEY
+  COINKEYPUB=grep -Po '"public":.*?[^\\]",' $COINKEY
   if [ "$?" -gt "0" ];
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
     COINKEY=$($COIN_CLI bls generate)
+    COINKEYPRIV=grep -Po '"secret":.*?[^\\]",' $COINKEY
+    COINKEYPUB=grep -Po '"public":.*?[^\\]",' $COINKEY
   fi
   $COIN_CLI stop
 fi
 clear
 
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-masternodeblsprivkey=$COINKEY
+masternodeblsprivkey=$COINKEYPRIV
 masternode=1
 EOF
 
