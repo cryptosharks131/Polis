@@ -112,7 +112,7 @@ function update_config() {
   if grep -q "masternodeprivkey=" $CONFIGFOLDER/$CONFIG_FILE; then
     #sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
-    BRIDGE='yes'
+#     BRIDGE='yes'
   fi
 #   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 # EOF
@@ -156,7 +156,7 @@ function update_key() {
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
-    COINKEY=$($COIN_CLI masternode genkey)
+    COINKEY=$($COIN_CLI bls generate)
   fi
   $COIN_CLI stop
 fi
