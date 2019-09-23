@@ -111,6 +111,7 @@ function update_config() {
   sed -i '/^connect=/d' $CONFIGFOLDER/$CONFIG_FILE
   if grep -q "masternodeblsprivkey=" $CONFIGFOLDER/$CONFIG_FILE;
   then
+    echo -e "No Change!"
   else
     #sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
