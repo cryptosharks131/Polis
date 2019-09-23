@@ -10,6 +10,7 @@ COIN_REPO='https://hub.polispay.com/PolisCore/v1.5.0/poliscore-1.5.0-x86_64-linu
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.15/bootstrap.tar.gz'
+BRIDGE='no'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -111,6 +112,7 @@ function update_config() {
   if grep -q "masternodeprivkey=" $CONFIGFOLDER/$CONFIG_FILE; then
     #sed -i '/^masternodeprivkey=/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
+    BRIDGE='yes'
   fi
 #   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 # EOF
@@ -133,6 +135,9 @@ function important_information() {
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
+ if $BRIDGE == 'yes'; then
+  echo -e "New BLS PrivKey: $COINKEY"
+ fi
 }
 
 function update_key() {
