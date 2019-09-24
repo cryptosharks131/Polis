@@ -136,10 +136,8 @@ function important_information() {
  echo -e "Start: ${RED}systemctl start $COIN_NAME.service${NC}"
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
+ echo -e "BLS PubKey: $COINKEYPUB"
  echo -e "================================================================================================================================"
- echo -e "Pub: $COINKEYPUB Priv: $COINKEYPRIV"
- echo -e "PubRaw: $COINKEYPUBRAW PrivRaw: $COINKEYPRIVRAW"
- echo -e "Raw: $COINKEY"
 }
 
 function update_key() {
