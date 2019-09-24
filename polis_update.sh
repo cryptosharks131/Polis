@@ -115,7 +115,6 @@ function update_config() {
   else
     sed -i '/^masternode=1/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
-#     BRIDGE='yes'
   fi
 #   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 # EOF
@@ -138,9 +137,7 @@ function important_information() {
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
-#  if [$BRIDGE -eq 'yes']; then
-#   echo -e "New BLS PrivKey: $COINKEYPUB"
-#  fi
+ echo -e "Pub: $COINKEYPUB Priv: $COINKEYPRIV"
 }
 
 function update_key() {
@@ -155,15 +152,19 @@ function update_key() {
    exit 1
   fi
   COINKEY=$($COIN_CLI bls generate)
-    COINKEYPRIV=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",')
-    COINKEYPUB=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]",')
+  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",' | cut -c12-)
+  COINKEYPRIV=${COINKEYPRIVRAW::-2}
+  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]"}' | cut -c12-)
+  COINKEYPUB=${COINKEYPUBRAW::-2}
   if [ "$?" -gt "0" ];
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
     COINKEY=$($COIN_CLI bls generate)
-    COINKEYPRIV=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",')
-    COINKEYPUB=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]",')
+    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",' | cut -c12-)
+    COINKEYPRIV=${COINKEYPRIVRAW::-2}
+    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]"}' | cut -c12-)
+    COINKEYPUB=${COINKEYPUBRAW::-2}
   fi
   $COIN_CLI stop
 fi
