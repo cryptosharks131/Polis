@@ -260,7 +260,8 @@ function important_information() {
  echo -e "Start: ${RED}systemctl start $COIN_NAME.service${NC}"
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "VPS_IP:PORT ${RED}$NODEIP:$COIN_PORT${NC}"
- echo -e "MASTERNODE PRIVATEKEY is: ${RED}$COINKEY${NC}"
+ echo -e "MASTERNODE PRIVATEKEY is: ${RED}$COINKEYOLD${NC}"
+ echo -e "MASTERNODE BLS PUBKEY is: ${RED}$COINKEYPUB${NC}"
  if [[ -n $SENTINEL_REPO  ]]; then
   echo -e "${RED}Sentinel${NC} is installed in ${RED}/sentinel${NC}"
   echo -e "Sentinel logs is: ${RED}$CONFIGFOLDER/sentinel.log${NC}"
