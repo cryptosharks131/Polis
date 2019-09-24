@@ -109,9 +109,10 @@ function import_bootstrap() {
 function update_config() {
   sed -i '/^addnode=/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/^connect=/d' $CONFIGFOLDER/$CONFIG_FILE
+  sed -i 's/daemon=0/daemon=1/' $CONFIGFOLDER/$CONFIG_FILE
   if grep -q "masternodeblsprivkey=" $CONFIGFOLDER/$CONFIG_FILE;
   then
-    echo -e "No Change!"
+    :
   else
     sed -i '/^masternode=1/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
