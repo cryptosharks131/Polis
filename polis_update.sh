@@ -138,6 +138,8 @@ function important_information() {
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
  echo -e "================================================================================================================================"
  echo -e "Pub: $COINKEYPUB Priv: $COINKEYPRIV"
+ echo -e "PubRaw: $COINKEYPUBRAW PrivRaw: $COINKEYPRIVRAW"
+ echo -e "Raw: $COINKEY"
 }
 
 function update_key() {
