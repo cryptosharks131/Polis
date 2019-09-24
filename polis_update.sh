@@ -154,19 +154,19 @@ function update_key() {
    exit 1
   fi
   COINKEY=$($COIN_CLI bls generate)
-  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",' | cut -c12-)
-  COINKEYPRIV=${COINKEYPRIVRAW::-2}
-  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]"}' | cut -c12-)
-  COINKEYPUB=${COINKEYPUBRAW::-2}
+  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+  COINKEYPRIV=${COINKEYPRIVRAW::-1}
+  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+  COINKEYPUB=${COINKEYPUBRAW::-1}
   if [ "$?" -gt "0" ];
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
     COINKEY=$($COIN_CLI bls generate)
-    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret":.*?[^\\]",' | cut -c12-)
-    COINKEYPRIV=${COINKEYPRIVRAW::-2}
-    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public":.*?[^\\]"}' | cut -c12-)
-    COINKEYPUB=${COINKEYPUBRAW::-2}
+    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+    COINKEYPRIV=${COINKEYPRIVRAW::-1}
+    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+    COINKEYPUB=${COINKEYPUBRAW::-1}
   fi
   $COIN_CLI stop
 fi
