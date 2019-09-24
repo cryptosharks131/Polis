@@ -122,12 +122,22 @@ function create_key() {
    echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
    exit 1
   fi
+  COINKEYOLD=$($COIN_CLI masternode genkey)
   COINKEY=$($COIN_CLI bls generate)
+  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+  COINKEYPRIV=${COINKEYPRIVRAW::-1}
+  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+  COINKEYPUB=${COINKEYPUBRAW::-1}
   if [ "$?" -gt "0" ];
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
-    COINKEY=$($COIN_CLI masternode genkey)
+    COINKEYOLD=$($COIN_CLI masternode genkey)
+    COINKEY=$($COIN_CLI bls generate)
+    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+    COINKEYPRIV=${COINKEYPRIVRAW::-1}
+    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+    COINKEYPUB=${COINKEYPUBRAW::-1}
   fi
   $COIN_CLI stop
 fi
@@ -138,10 +148,10 @@ function update_config() {
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 logintimestamps=1
 maxconnections=64
-#bind=$NODEIP
 masternode=1
 externalip=$NODEIP:$COIN_PORT
-masternodeblsprivkey=$COINKEY
+masternodeprivkey=$COINKEYOLD
+masternodeblsprivkey=$COINKEYPRIV
 EOF
 }
 
