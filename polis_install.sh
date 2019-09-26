@@ -6,7 +6,7 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.18/poliscore-1.4.18-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.5.0/poliscore-1.5.0-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_PORT=24126
@@ -122,12 +122,22 @@ function create_key() {
    echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
    exit 1
   fi
-  COINKEY=$($COIN_CLI masternode genkey)
+  COINKEYOLD=$($COIN_CLI masternode genkey)
+  COINKEY=$($COIN_CLI bls generate)
+  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+  COINKEYPRIV=${COINKEYPRIVRAW::-1}
+  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+  COINKEYPUB=${COINKEYPUBRAW::-1}
   if [ "$?" -gt "0" ];
     then
     echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
     sleep 30
-    COINKEY=$($COIN_CLI masternode genkey)
+    COINKEYOLD=$($COIN_CLI masternode genkey)
+    COINKEY=$($COIN_CLI bls generate)
+    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+    COINKEYPRIV=${COINKEYPRIVRAW::-1}
+    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+    COINKEYPUB=${COINKEYPUBRAW::-1}
   fi
   $COIN_CLI stop
 fi
@@ -135,14 +145,13 @@ clear
 }
 
 function update_config() {
-  sed -i 's/daemon=1/daemon=0/' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 logintimestamps=1
 maxconnections=64
-#bind=$NODEIP
 masternode=1
 externalip=$NODEIP:$COIN_PORT
-masternodeprivkey=$COINKEY
+masternodeprivkey=$COINKEYOLD
+masternodeblsprivkey=$COINKEYPRIV
 EOF
 }
 
@@ -251,7 +260,8 @@ function important_information() {
  echo -e "Start: ${RED}systemctl start $COIN_NAME.service${NC}"
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "VPS_IP:PORT ${RED}$NODEIP:$COIN_PORT${NC}"
- echo -e "MASTERNODE PRIVATEKEY is: ${RED}$COINKEY${NC}"
+ echo -e "MASTERNODE PRIVATEKEY is: ${RED}$COINKEYOLD${NC}"
+ echo -e "MASTERNODE BLS PUBKEY is: ${RED}$COINKEYPUB${NC}"
  if [[ -n $SENTINEL_REPO  ]]; then
   echo -e "${RED}Sentinel${NC} is installed in ${RED}/sentinel${NC}"
   echo -e "Sentinel logs is: ${RED}$CONFIGFOLDER/sentinel.log${NC}"

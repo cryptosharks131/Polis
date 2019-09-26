@@ -6,10 +6,11 @@ CONFIGFOLDER='/root/.poliscore'
 CONFIG_FILE='polis.conf'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.18/poliscore-1.4.18-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.5.0/poliscore-1.5.0-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_BS='https://github.com/polispay/polis/releases/download/v1.4.15/bootstrap.tar.gz'
+BRIDGE='no'
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -108,6 +109,14 @@ function import_bootstrap() {
 function update_config() {
   sed -i '/^addnode=/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i '/^connect=/d' $CONFIGFOLDER/$CONFIG_FILE
+  sed -i 's/daemon=0/daemon=1/' $CONFIGFOLDER/$CONFIG_FILE
+  if grep -q "masternodeblsprivkey=" $CONFIGFOLDER/$CONFIG_FILE;
+  then
+    :
+  else
+    sed -i '/^masternode=1/d' $CONFIGFOLDER/$CONFIG_FILE
+    update_key
+  fi
 #   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 # EOF
 }
@@ -117,7 +126,7 @@ function important_information() {
 #  $COIN_DAEMON -daemon -reindex
 #  sleep 15
 #  $COIN_CLI stop >/dev/null 2>&1
-#  sleep 5
+ sleep 5
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON -daemon >/dev/null 2>&1
@@ -128,7 +137,45 @@ function important_information() {
  echo -e "Start: ${RED}systemctl start $COIN_NAME.service${NC}"
  echo -e "Stop: ${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "Please check ${RED}$COIN_NAME${NC} is running with the following command: ${RED}systemctl status $COIN_NAME.service${NC}"
+ echo -e "BLS PubKey: $COINKEYPUB"
  echo -e "================================================================================================================================"
+}
+
+function update_key() {
+  echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new BLS PrivKey."
+  echo -e "Enter your ${RED}$COIN_NAME BLS Private Key${NC}. Leave it blank to generate a new ${RED}BLS Private Key${NC} for you:"
+  read -e COINKEY
+  if [[ -z "$COINKEY" ]]; then
+  $COIN_DAEMON -daemon
+  sleep 30
+  if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
+   echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
+   exit 1
+  fi
+  COINKEY=$($COIN_CLI bls generate)
+  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+  COINKEYPRIV=${COINKEYPRIVRAW::-1}
+  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+  COINKEYPUB=${COINKEYPUBRAW::-1}
+  if [ "$?" -gt "0" ];
+    then
+    echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
+    sleep 30
+    COINKEY=$($COIN_CLI bls generate)
+    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+    COINKEYPRIV=${COINKEYPRIVRAW::-1}
+    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+    COINKEYPUB=${COINKEYPUBRAW::-1}
+  fi
+  $COIN_CLI stop
+fi
+clear
+
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+masternodeblsprivkey=$COINKEYPRIV
+masternode=1
+EOF
+
 }
 
 ##### Main #####

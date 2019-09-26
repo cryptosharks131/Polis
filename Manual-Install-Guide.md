@@ -91,16 +91,16 @@ apt-get -y install libdb4.8-dev
 apt-get -y install libdb4.8++-dev
 ```
 ```
-wget https://github.com/polispay/polis/releases/download/v1.4.18/poliscore-1.4.18-x86_64-linux-gnu.tar.gz
+wget https://github.com/polispay/polis/releases/download/v1.5.0/poliscore-1.5.0-x86_64-linux-gnu.tar.gz
 ```
 ```
-tar -xvf poliscore-1.4.18-x86_64-linux-gnu.tar.gz
+tar -xvf poliscore-1.5.0-x86_64-linux-gnu.tar.gz
 ```
 ```
-rm poliscore-1.4.18-x86_64-linux-gnu.tar.gz
+rm poliscore-1.5.0-x86_64-linux-gnu.tar.gz
 ```
 ```
-cp poliscore-1.4.18/bin/polis{d,-cli} /usr/local/bin/
+cp poliscore-1.5.0/bin/polis{d,-cli} /usr/local/bin/
 ```
 ```
 cd
@@ -125,25 +125,9 @@ daemon=1
 logtimestamps=1
 maxconnections=256
 externalip=VPS_IP_ADDRESS
-masternodeprivkey=WALLET_GENKEY
-masternode=1
+#masternodeprivkey=WALLET_GENKEY
+#masternode=1
 addnode=polispay.org
-addnode=node1.polispay.org
-addnode=node2.polispay.org
-addnode=insight.polispay.org
-addnode=insight2.polispay.org
-addnode=explorer.polispay.org
-addnode=199.247.2.29:24126
-addnode=46.101.32.72:24126
-addnode=144.202.19.190:24126
-addnode=207.148.5.135:24126
-addnode=89.47.165.165:24126
-addnode=62.75.139.140:24126
-addnode=207.148.5.135:24126
-addnode=209.250.245.66:24126
-addnode=199.247.3.98:24126
-addnode=199.247.29.65:24126
-addnode=45.32.149.254:24126
 ```
 CTRL X to save it. Y for yes, then ENTER.
 ```
@@ -178,7 +162,29 @@ CTRL X to save it. Y for yes, then ENTER.
 
 3.Use `watch polis-cli getinfo` to check and wait til it's synced 
   (look for blocks number and compare with block explorer https://insight.polispay.org/ )
+  
+4. Generate a BLS key and update the config file one lat time (you will need to add the "secret" key to the config file)
+```
+polis-cli bls generate
+```
+```
+nano .poliscore/polis.conf
+```
+5. Remove the '#' in front of masternode=1 and masternodeprivkey=WALLET_GENKEY and add the "secret" key from above to the file
+```
+masternodeprivkey=WALLET_GENKEY
+masternode=1
+masternodeblsprivkey=secret_key_here
+```
+CTRL X to save it. Y for yes, then ENTER.
 
+6. Restart the wallet and now the VPS is ready
+```
+polis-cli stop
+```
+```
+polisd &
+```
 
 ## Cold Wallet Setup Part 2 
 
