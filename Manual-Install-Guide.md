@@ -170,7 +170,7 @@ polis-cli bls generate
 ```
 nano .poliscore/polis.conf
 ```
-5. Remove the '#' in front of masternode=1 and masternodeprivkey=key_here and add the "secret" key from above to the file
+5. Remove the '#' in front of masternode=1 and masternodeprivkey=WALLET_GENKEY and add the "secret" key from above to the file
 ```
 masternodeprivkey=WALLET_GENKEY
 masternode=1
