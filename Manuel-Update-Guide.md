@@ -1,6 +1,6 @@
 ## Updating Polis
 
-# IMPORTANT!! Updating to 1.5.0 or above for the first time?  You will need to also follow these additional steps.
+### IMPORTANT!! Updating to 1.5.0 or above for the first time?  You will need to also follow these additional steps.
 1. Follow the update instructions below as normal
 2. Open the polis.conf file, remove masternode=1 and then save/close
 nano ~/.poliscore/polis.conf
@@ -13,7 +13,7 @@ nano ~/.poliscore/polis.conf
 polis-cli stop
 polisd &
 
-# Update Instructions
+### Update Instructions
 cd  
 polis-cli stop  
 wget https://github.com/polispay/polis/releases/download/v1.5.0/poliscore-1.5.0-x86_64-linux-gnu.tar.gz  
