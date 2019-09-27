@@ -114,33 +114,57 @@ EOF
 
 function create_key() {
   echo -e "Enter your ${RED}$COIN_NAME Masternode Private Key${NC}. Leave it blank to generate a new ${RED}Masternode Private Key${NC} for you:"
-  read -e COINKEY
-  if [[ -z "$COINKEY" ]]; then
-  $COIN_DAEMON -daemon
-  sleep 30
-  if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
-   echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
-   exit 1
-  fi
-  COINKEYOLD=$($COIN_CLI masternode genkey)
-  COINKEY=$($COIN_CLI bls generate)
-  COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
-  COINKEYPRIV=${COINKEYPRIVRAW::-1}
-  COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
-  COINKEYPUB=${COINKEYPUBRAW::-1}
-  if [ "$?" -gt "0" ];
-    then
-    echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
+  read -e COINKEYOLD
+  if [[ -z "$COINKEYOLD" ]];
+  then
+    $COIN_DAEMON -daemon
     sleep 30
+    if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
+     echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
+     exit 1
+    fi
     COINKEYOLD=$($COIN_CLI masternode genkey)
     COINKEY=$($COIN_CLI bls generate)
     COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
     COINKEYPRIV=${COINKEYPRIVRAW::-1}
     COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
     COINKEYPUB=${COINKEYPUBRAW::-1}
+    if [ "$?" -gt "0" ];
+      then
+      echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
+      sleep 30
+      COINKEYOLD=$($COIN_CLI masternode genkey)
+      COINKEY=$($COIN_CLI bls generate)
+      COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+      COINKEYPRIV=${COINKEYPRIVRAW::-1}
+      COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+      COINKEYPUB=${COINKEYPUBRAW::-1}
+    fi
+    $COIN_CLI stop
+  else
+    $COIN_DAEMON -daemon
+    sleep 30
+    if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
+     echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
+     exit 1
+    fi
+    COINKEY=$($COIN_CLI bls generate)
+    COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+    COINKEYPRIV=${COINKEYPRIVRAW::-1}
+    COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+    COINKEYPUB=${COINKEYPUBRAW::-1}
+    if [ "$?" -gt "0" ];
+      then
+      echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the Private Key${NC}"
+      sleep 30
+      COINKEY=$($COIN_CLI bls generate)
+      COINKEYPRIVRAW=$(echo "$COINKEY" | grep -Po '"secret": ".*?[^\\]"' | cut -c12-)
+      COINKEYPRIV=${COINKEYPRIVRAW::-1}
+      COINKEYPUBRAW=$(echo "$COINKEY" | grep -Po '"public": ".*?[^\\]"' | cut -c12-)
+      COINKEYPUB=${COINKEYPUBRAW::-1}
+    fi
+    $COIN_CLI stop
   fi
-  $COIN_CLI stop
-fi
 clear
 }
 
