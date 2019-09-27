@@ -143,9 +143,9 @@ function important_information() {
 
 function update_key() {
   echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new BLS PrivKey."
-  echo -e "Enter your ${RED}$COIN_NAME BLS Private Key${NC}. Leave it blank to generate a new ${RED}BLS Private Key${NC} for you:"
-  read -e COINKEY
-  if [[ -z "$COINKEY" ]]; then
+  echo -e "The script will now generate a new ${RED}BLS Private Key${NC} for you.  Press any key to continue."
+#   read -e COINKEY
+#   if [[ -z "$COINKEY" ]]; then
   $COIN_DAEMON -daemon
   sleep 30
   if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
@@ -168,7 +168,7 @@ function update_key() {
     COINKEYPUB=${COINKEYPUBRAW::-1}
   fi
   $COIN_CLI stop
-fi
+# fi
 clear
 
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
