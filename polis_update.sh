@@ -117,16 +117,28 @@ function update_config() {
     sed -i '/^masternode=1/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
   fi
-#   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-# EOF
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+addnode=149.28.149.89 
+addnode=207.148.13.21
+addnode=80.240.21.39
+addnode=199.247.14.30
+addnode=95.179.207.144
+addnode=43.224.34.171
+addnode=217.69.5.65
+addnode=207.246.117.34
+addnode=45.76.86.38
+addnode=207.246.117.34
+addnode=95.179.207.144
+addnode=165.22.14.216
+EOF
 }
 
 function important_information() {
 #  rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
- $COIN_DAEMON -daemon -reindex
- sleep 15
- $COIN_CLI stop >/dev/null 2>&1
- sleep 5
+#  $COIN_DAEMON -daemon -reindex
+#  sleep 15
+#  $COIN_CLI stop >/dev/null 2>&1
+#  sleep 5
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON -daemon >/dev/null 2>&1
@@ -184,7 +196,7 @@ clear
 checks
 prepare_system
 update_node
-#import_bootstrap
+import_bootstrap
 update_config
 update_sentinel
 important_information
