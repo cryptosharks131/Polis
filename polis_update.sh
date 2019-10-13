@@ -6,10 +6,10 @@ CONFIGFOLDER='/root/.poliscore'
 CONFIG_FILE='polis.conf'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.5.2/poliscore-1.5.2-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://hub.polispay.com/PolisCore/v1.5.3/poliscore-1.5.3-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
-COIN_BS='https://hub.polispay.com/PolisCore/bootstrap.tar.gz'
+COIN_BS='https://hub.polispay.com/bootstrap.tar.gz'
 BRIDGE='no'
 
 RED='\033[0;31m'
@@ -100,7 +100,7 @@ function import_bootstrap() {
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp -r blocks chainstate peers.dat $CONFIGFOLDER
+  cp -r evodb blocks chainstate peers.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
   clear
@@ -117,8 +117,20 @@ function update_config() {
     sed -i '/^masternode=1/d' $CONFIGFOLDER/$CONFIG_FILE
     update_key
   fi
-#   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-# EOF
+  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
+addnode=149.28.149.89 
+addnode=207.148.13.21
+addnode=80.240.21.39
+addnode=199.247.14.30
+addnode=95.179.207.144
+addnode=43.224.34.171
+addnode=217.69.5.65
+addnode=207.246.117.34
+addnode=45.76.86.38
+addnode=207.246.117.34
+addnode=95.179.207.144
+addnode=165.22.14.216
+EOF
 }
 
 function important_information() {
@@ -126,7 +138,7 @@ function important_information() {
 #  $COIN_DAEMON -daemon -reindex
 #  sleep 15
 #  $COIN_CLI stop >/dev/null 2>&1
- sleep 5
+#  sleep 5
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON -daemon >/dev/null 2>&1
