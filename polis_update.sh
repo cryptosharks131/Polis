@@ -123,9 +123,9 @@ function update_config() {
 
 function important_information() {
 #  rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
-#  $COIN_DAEMON -daemon -reindex
-#  sleep 15
-#  $COIN_CLI stop >/dev/null 2>&1
+ $COIN_DAEMON -daemon -reindex
+ sleep 15
+ $COIN_CLI stop >/dev/null 2>&1
  sleep 5
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
