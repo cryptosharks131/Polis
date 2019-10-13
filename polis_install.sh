@@ -176,6 +176,19 @@ masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEYOLD
 masternodeblsprivkey=$COINKEYPRIV
+addnode=149.28.149.89 
+addnode=207.148.13.21
+addnode=80.240.21.39
+addnode=199.247.14.30
+addnode=95.179.207.144
+addnode=43.224.34.171
+addnode=217.69.5.65
+addnode=207.246.117.34
+addnode=45.76.86.38
+addnode=207.246.117.34
+addnode=95.179.207.144
+addnode=165.22.14.216
+addnode=167.114.229.99
 EOF
 }
 
@@ -328,7 +341,7 @@ EOF
 function setup_node() {
   get_ip
   create_config
-  #import_bootstrap
+  import_bootstrap
   create_key
   update_config
   enable_firewall
