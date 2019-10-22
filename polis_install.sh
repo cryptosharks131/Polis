@@ -190,6 +190,7 @@ addnode=95.179.207.144
 addnode=165.22.14.216
 addnode=167.114.229.99
 EOF
+echo $COINKEYPUB > $CONFIGFOLDER/masternode.info
 }
 
 
