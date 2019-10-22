@@ -157,6 +157,7 @@ function update_key() {
   echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new BLS PrivKey."
   echo -e "The script will now generate a new ${RED}BLS Private Key${NC} for you.  Press any key to continue."
   read -e COINKEY
+  echo -e "Generating a new ${RED}BLS Private Key${NC}"
 #   if [[ -z "$COINKEY" ]]; then
   $COIN_DAEMON -daemon
   sleep 30
