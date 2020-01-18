@@ -317,10 +317,7 @@ function import_bootstrap() {
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   tar xvf $COIN_ZIP >/dev/null 2>&1
   compile_error
-#   cd
-  cp -r blocks $CONFIGFOLDER
-  cp -r chainstate $CONFIGFOLDER
-#   cp -r peers.dat $CONFIGFOLDER
+  cp -r evodb blocks chainstate peers.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
   clear
