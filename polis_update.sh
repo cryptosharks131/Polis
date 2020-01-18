@@ -6,10 +6,10 @@ CONFIGFOLDER='/root/.poliscore'
 CONFIG_FILE='polis.conf'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.5.3/poliscore-1.5.3-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.6.0/poliscore-1.6.0-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
-COIN_BS='https://hub.polispay.com/bootstrap.tar.gz'
+COIN_BS='https://github.com/polispay/polis/releases/download/v1.6.0/bootstrap.tar.gz'
 BRIDGE='no'
 
 RED='\033[0;31m'
@@ -197,7 +197,7 @@ clear
 checks
 prepare_system
 update_node
-#import_bootstrap
+import_bootstrap
 update_config
 update_sentinel
 important_information
