@@ -16,12 +16,12 @@ polisd &
 ### Update Instructions
 cd  
 polis-cli stop  
-wget https://github.com/polispay/polis/releases/download/v1.5.3/poliscore-1.5.3-x86_64-linux-gnu.tar.gz  
-tar -xvf poliscore-1.5.3-x86_64-linux-gnu.tar.gz 
-rm poliscore-1.5.3-x86_64-linux-gnu.tar.gz  
+wget https://github.com/polispay/polis/releases/download/v1.5.3/poliscore-1.6.0-x86_64-linux-gnu.tar.gz  
+tar -xvf poliscore-1.6.0-x86_64-linux-gnu.tar.gz 
+rm poliscore-1.6.0-x86_64-linux-gnu.tar.gz  
 rm /usr/local/bin/polis*  
-cp poliscore-1.5.3/bin/polis{d,-cli} /usr/local/bin/  
-rm -r poliscore-1.5.3  
+cp poliscore-1.6.0/bin/polis{d,-cli} /usr/local/bin/  
+rm -r poliscore-1.6.0  
 polisd &  
 
 1. If the command 'polis-cli masternode status' says 'sucessfully started' then you are running again and are done.  
