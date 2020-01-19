@@ -176,19 +176,16 @@ masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEYOLD
 masternodeblsprivkey=$COINKEYPRIV
-# addnode=149.28.149.89 
-# addnode=207.148.13.21
-# addnode=80.240.21.39
-# addnode=199.247.14.30
-# addnode=95.179.207.144
-# addnode=43.224.34.171
-# addnode=217.69.5.65
-# addnode=207.246.117.34
-# addnode=45.76.86.38
-# addnode=207.246.117.34
-# addnode=95.179.207.144
-# addnode=165.22.14.216
 addnode=insight.polispay.org
+addnode=116.203.116.205
+addnode=95.216.56.42
+addnode=207.180.218.18
+addnode=80.211.45.85
+addnode=176.233.138.86
+addnode=5.189.161.94
+addnode=149.28.209.101
+addnode=167.99.85.39
+addnode=157.230.87.57
 EOF
 echo $COINKEYPUB > $CONFIGFOLDER/masternode.info
 }
