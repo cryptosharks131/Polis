@@ -4,7 +4,7 @@
   COIN_DAEMON='/usr/local/bin/polisd'
   COIN_CLI='/usr/local/bin/polis-cli'
   COIN_NAME='Polis'
-  COIN_BS='https://github.com/polispay/polis/releases/download/v1.6.0/bootstrap.tar.gz'
+  COIN_BS='https://github.com/polispay/polis/releases/download/v1.6.1/bootstrap.tar.gz'
   
 function update_config() {
   sed -i '/^addnode=/d' $CONFIGFOLDER/$CONFIG_FILE
