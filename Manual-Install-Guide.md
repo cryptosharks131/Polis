@@ -125,7 +125,6 @@ daemon=1
 logtimestamps=1
 maxconnections=256
 externalip=VPS_IP_ADDRESS
-#masternodeprivkey=WALLET_GENKEY
 #masternode=1
 addnode=polispay.org
 ```
