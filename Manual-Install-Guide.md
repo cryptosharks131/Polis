@@ -113,7 +113,6 @@ nano .poliscore/polis.conf
 ```
 Replace:
 externalip=VPS_IP_ADDRESS
-masternodeprivkey=WALLET_GENKEY
 With your info!
 ```
 rpcuser=randuser43897ty8943
