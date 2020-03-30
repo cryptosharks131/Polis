@@ -168,9 +168,8 @@ polis-cli bls generate
 ```
 nano .poliscore/polis.conf
 ```
-5. Remove the '#' in front of masternode=1 and masternodeprivkey=WALLET_GENKEY and add the "secret" key from above to the file
+5. Remove the '#' in front of masternode=1 and add the "secret" key from above to the file
 ```
-masternodeprivkey=WALLET_GENKEY
 masternode=1
 masternodeblsprivkey=secret_key_here
 ```
@@ -186,32 +185,9 @@ polisd &
 
 ## Cold Wallet Setup Part 2 
 
-1. On your local machine open your `masternode.conf` file.
-   Depending on your operating system you will find it in:
-   * Windows: `%APPDATA%\polisCore\`
-   * Mac OS: `~/Library/Application Support/polisCore/`
-   * Unix/Linux: `~/.poliscore/`
-   
-   Leave the file open
-2. Go to "Tools" -> "Debug console"
-3. Run the following command: `masternode outputs`
-4. You should see output like the following if you have a transaction with exactly 1000 POLIS:
-```
-{
-    "12345678xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": "0"
-}
-```
-5. The value on the left is your `txid` and the right is the `vout`
-6. Add a line to the bottom of the already opened `masternode.conf` file using the IP of your
-VPS (with port 24126), `private key`, `txid` and `vout`:
-```
-mn1 1.2.3.4:24126 3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 12345678xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 0 
-```
-7. Save the file, exit your wallet and reopen your wallet.
-8. Go to the "Masternodes" tab
-9. Click "Start All"
-10. You will see "SENTINEL_PING_EXPIRED". Just wait some time, you should see a timer start in about 30 minutes.
+1. Register your MN - follow this video from the Polis team for help with the registration process
+   https://www.polispayserver.com/page/video/4/
+2. Once you make the registration, wait for it to confirm on the transactions tab
+3. You should see your MN appear as 'Enabled' on the Masternodes tab with the 'My masternodes only' checked
 
-Done !  
-
-Note: 15 confirmations are needed to avoid error "Failed to verify MNB".
+Done!
