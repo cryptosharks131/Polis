@@ -5,34 +5,6 @@
    - **It must be Ubuntu 16.04 (Xenial)**
 2. Make sure you have a transaction of exactly 1000 POLIS in your desktop cold wallet.
 
-## Cold Wallet Setup Part 1
-
-1. Open your wallet on your desktop.
-
-   Click Settings -> Options -> Wallet
-   
-   Check "Enable coin control features"
-   
-   Check "Show Masternodes Tab"
-   
-   Press Ok (you will need to restart the wallet)
-   
-   ![Alt text](https://github.com/digitalmine/Guide/blob/master/poliswalletsettings.png "Wallet Settings")
-
-   
-   
-   
-2. Go to the "Tools" -> "Debug console"
-3. Run the following command: `masternode genkey`
-4. You should see a long key that looks like:
-```
-3HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg
-```
-5. This is your `private key`, keep it safe, do not share with anyone.
-
-
-
-
 ## VPS Setup
 
 1. Log into your VPS
