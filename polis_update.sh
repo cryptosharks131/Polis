@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.poliscore'
 CONFIG_FILE='polis.conf'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.6.2/poliscore-1.6.2-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.6.3/poliscore-1.6.3-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
 COIN_BS='https://github.com/polispay/polis/releases/download/v1.6.1/bootstrap.tar.gz'
@@ -132,11 +132,11 @@ EOF
 }
 
 function important_information() {
- rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
- $COIN_DAEMON -daemon -reindex
- sleep 15
- $COIN_CLI stop >/dev/null 2>&1
- sleep 5
+ #rm -rf $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
+ #$COIN_DAEMON -daemon -reindex
+ #sleep 15
+ #$COIN_CLI stop >/dev/null 2>&1
+ #sleep 5
  systemctl start $COIN_NAME >/dev/null 2>&1
  sleep 3
  $COIN_DAEMON -daemon >/dev/null 2>&1
