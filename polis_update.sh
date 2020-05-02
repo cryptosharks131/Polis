@@ -153,14 +153,14 @@ function important_information() {
 
 function update_key() {
   echo -e "This masternode was on a version prior to 1.5.0 and needs to generate a new BLS PrivKey."
-  echo -e "The script will now generate a new ${RED}BLS Private Key${NC} for you.  Press any key to continue."
+  echo -e "The script will now generate a new ${RED}BLS Private Key${NC} for you.  Press enter to continue."
   read -e COINKEY
   echo -e "Generating a new ${RED}BLS Private Key${NC}"
 #   if [[ -z "$COINKEY" ]]; then
   $COIN_DAEMON -daemon
   sleep 30
   if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
-   echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
+   echo -e "Could not start ${RED}$COIN_NAME server. Check /var/log/syslog for errors.{$NC}"
    exit 1
   fi
   COINKEY=$($COIN_CLI bls generate)
