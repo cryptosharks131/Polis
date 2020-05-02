@@ -120,7 +120,7 @@ function create_key() {
   $COIN_DAEMON -daemon
   sleep 30
   if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
-   echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
+   echo -e "Could not start ${RED}$COIN_NAME server. Check /var/log/syslog for errors.{$NC}"
    exit 1
   fi
   COINKEY=$($COIN_CLI bls generate)
