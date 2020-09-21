@@ -9,7 +9,7 @@ COIN_CLI='/usr/local/bin/polis-cli'
 COIN_REPO='https://github.com/polispay/polis/releases/download/v1.6.4/poliscore-1.6.4-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel.git'
 COIN_NAME='Polis'
-COIN_BS='https://github.com/polispay/polis/releases/download/v1.6.1/bootstrap.tar.gz'
+COIN_BS='https://public.oly.tech/bootstrap.tar.gz'
 BRIDGE='no'
 
 RED='\033[0;31m'
@@ -91,7 +91,7 @@ clear
 
 function import_bootstrap() {
   echo -e "Importing Bootstrap For $COIN_NAME"
-  rm -rf $CONFIGFOLDER/evodb $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat
+  rm -rf $CONFIGFOLDER/evodb $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat $CONFIGFOLDER/sporks.dat
   cd $TMP_BS
 #   cd $CONFIGFOLDER
   wget -q $COIN_BS
@@ -195,7 +195,7 @@ clear
 checks
 prepare_system
 update_node
-#import_bootstrap
+import_bootstrap
 update_config
 update_sentinel
 important_information
