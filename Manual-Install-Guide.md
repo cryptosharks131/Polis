@@ -75,6 +75,9 @@ rm poliscore-1.6.6-x86_64-linux-gnu.tar.gz
 cp poliscore-1.6.6/bin/polis{d,-cli} /usr/local/bin/
 ```
 ```
+rm -r poliscore-1.6.6
+```
+```
 cd
 ```
 ```
