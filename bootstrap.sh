@@ -32,7 +32,7 @@ function import_bootstrap() {
 #   cd
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
   tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
-  cp -r evodb blocks chainstate peers.dat $CONFIGFOLDER
+  cp -r evodb blocks chainstate peers.dat sporks.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
   clear
