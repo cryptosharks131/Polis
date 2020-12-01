@@ -91,16 +91,16 @@ clear
 
 function import_bootstrap() {
   echo -e "Importing Bootstrap For $COIN_NAME"
-  rm -rf $CONFIGFOLDER/evodb $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat $CONFIGFOLDER/sporks.dat
+  rm -rf $CONFIGFOLDER/llmq $CONFIGFOLDER/evodb $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat $CONFIGFOLDER/sporks.dat
   cd $TMP_BS
 #   cd $CONFIGFOLDER
   wget -q $COIN_BS
   compile_error
 #   cd
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
+  tar xvf $COIN_ZIP >/dev/null 2>&1
   compile_error
-  cp -r evodb blocks chainstate peers.dat sporks.dat $CONFIGFOLDER
+  cp -r llmq evodb blocks chainstate peers.dat sporks.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
   clear
