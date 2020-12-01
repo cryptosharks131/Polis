@@ -25,14 +25,14 @@ EOF
 }
 
 function import_bootstrap() {
-  rm -rf $CONFIGFOLDER/evodb $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat $CONFIGFOLDER/sporks.dat
+  rm -rf $CONFIGFOLDER/llmq $CONFIGFOLDER/evodb $CONFIGFOLDER/blocks $CONFIGFOLDER/chainstate $CONFIGFOLDER/peers.dat $CONFIGFOLDER/banlist.dat $CONFIGFOLDER/mncache.dat $CONFIGFOLDER/sporks.dat
   cd $TMP_BS
 #   cd $CONFIGFOLDER
   wget -q $COIN_BS
 #   cd
   COIN_ZIP=$(echo $COIN_BS | awk -F'/' '{print $NF}')
-  tar xvf $COIN_ZIP --strip 1 >/dev/null 2>&1
-  cp -r evodb blocks chainstate peers.dat sporks.dat $CONFIGFOLDER
+  tar xvf $COIN_ZIP >/dev/null 2>&1
+  cp -r llmq evodb blocks chainstate peers.dat sporks.dat $CONFIGFOLDER
   cd - >/dev/null 2>&1
   rm -rf $TMP_BS >/dev/null 2>&1
   clear
