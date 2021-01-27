@@ -63,19 +63,19 @@ apt-get -y install libdb4.8-dev
 apt-get -y install libdb4.8++-dev
 ```
 ```
-wget https://github.com/polispay/polis/releases/download/v1.6.8/poliscore-1.6.8-x86_64-linux-gnu.tar.gz
+wget https://github.com/polispay/polis/releases/download/v1.7.0/poliscore-1.7.0-x86_64-linux-gnu.tar.gz
 ```
 ```
-tar -xvf poliscore-1.6.8-x86_64-linux-gnu.tar.gz
+tar -xvf poliscore-1.7.0-x86_64-linux-gnu.tar.gz
 ```
 ```
-rm poliscore-1.6.8-x86_64-linux-gnu.tar.gz
+rm poliscore-1.7.0-x86_64-linux-gnu.tar.gz
 ```
 ```
-cp poliscore-1.6.8/bin/polis{d,-cli} /usr/local/bin/
+cp poliscore-1.7.0/bin/polis{d,-cli} /usr/local/bin/
 ```
 ```
-rm -r poliscore-1.6.8
+rm -r poliscore-1.7.0
 ```
 ```
 cd
@@ -100,7 +100,15 @@ logtimestamps=1
 maxconnections=256
 externalip=VPS_IP_ADDRESS
 #masternode=1
-addnode=polispay.org
+addnode=167.172.143.204
+addnode=206.189.79.85
+addnode=167.172.45.36
+addnode=167.71.246.3
+addnode=178.128.16.154
+addnode=68.183.201.109
+addnode=143.110.145.33
+addnode=95.111.237.31
+addnode=161.97.112.31
 ```
 CTRL X to save it. Y for yes, then ENTER.
 ```
