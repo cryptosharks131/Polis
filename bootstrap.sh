@@ -11,16 +11,15 @@ function update_config() {
   sed -i '/^connect=/d' $CONFIGFOLDER/$CONFIG_FILE
   sed -i 's/daemon=0/daemon=1/' $CONFIGFOLDER/$CONFIG_FILE
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-addnode=insight.polispay.org
-addnode=116.203.116.205
-addnode=95.216.56.42
-addnode=207.180.218.18
-addnode=80.211.45.85
-addnode=176.233.138.86
-addnode=5.189.161.94
-addnode=149.28.209.101
-addnode=167.99.85.39
-addnode=157.230.87.57
+addnode=167.172.143.204
+addnode=206.189.79.85
+addnode=167.172.45.36
+addnode=167.71.246.3
+addnode=178.128.16.154
+addnode=68.183.201.109
+addnode=143.110.145.33
+addnode=95.111.237.31
+addnode=161.97.112.31
 EOF
 }
 
