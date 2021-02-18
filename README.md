@@ -48,18 +48,6 @@ bash polis_update.sh
 ```
 ***
 
-## Sentinel
-
-**Sentinel** is installed in **/sentinel** and added to **crontab** file.  
-Sentinel log file is **/root/.poliscore/sentinel.log**  
-Test the config by running the following commands:
-```
-cd /sentinel
-./venv/bin/py.test ./test
-SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py
-```
-***
-
 ## Import Polis Bootstrap
 The first line (rm bootstrap.sh) is not required the very first time you update the node and will return an error if you run it.  This is fine, continue with the update script.
 ```
