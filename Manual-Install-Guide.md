@@ -114,32 +114,6 @@ CTRL X to save it. Y for yes, then ENTER.
 ```
 polisd &
 ```
-```
-apt-get -y install virtualenv python-pip
-```
-```
-git clone https://github.com/polispay/sentinel /sentinel
-```
-```
-cd /sentinel
-```
-```
-virtualenv venv
-```
-```
-. venv/bin/activate
-```
-```
-pip install -r requirements.txt
-```
-```
-crontab -e
-```
-Hit 2. This will brin up an editor. Paste the following in it at the bottom.
-```
-* * * * * cd /sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
-```
-CTRL X to save it. Y for yes, then ENTER.
 
 3.Use `watch polis-cli getinfo` to check and wait til it's synced 
   (look for blocks number and compare with block explorer https://insight.polispay.org/ )
