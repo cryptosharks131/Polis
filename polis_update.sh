@@ -196,5 +196,5 @@ prepare_system
 update_node
 #import_bootstrap
 update_config
-update_sentinel
+#update_sentinel
 important_information
